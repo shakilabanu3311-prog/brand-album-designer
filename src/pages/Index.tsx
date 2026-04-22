@@ -52,9 +52,30 @@ const themes: Theme[] = [
 function ThemeWash({ primary, secondary, soft = false, solid = false }: { primary: string; secondary: string; soft?: boolean; solid?: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-42" : "opacity-70"} [mix-blend-mode:color]`}
-      style={{ background: solid ? primary : `linear-gradient(135deg, ${primary} 0%, ${primary} 58%, ${secondary} 100%)` }}
+      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-38" : "opacity-62"} [mix-blend-mode:color]`}
+      style={{ background: solid ? primary : `linear-gradient(135deg, ${primary} 0%, ${primary} 62%, ${secondary} 100%)` }}
     />
+  );
+}
+
+function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-10">
+      <div className="absolute left-0 top-0 grid h-[20%] w-[14.7%] place-items-center px-1 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+        <span className={`${compact ? "text-[7px]" : "text-[10px] sm:text-xs"} font-black leading-tight text-primary-foreground drop-shadow`}>EXCHANGE</span>
+      </div>
+      <div className="absolute left-[44%] top-[3.5%] grid h-[5.8%] w-[16%] place-items-center rounded-sm" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+        <span className={`${compact ? "text-[5px]" : "text-[8px]"} font-black tracking-wider text-primary-foreground`}>EXCHANGE</span>
+      </div>
+    </div>
+  );
+}
+
+function LoginBrandMask({ theme }: { theme: Theme }) {
+  return (
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 grid h-[18%] place-items-center px-4 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+      <span className="text-2xl font-black tracking-widest text-primary-foreground drop-shadow sm:text-3xl">EXCHANGE</span>
+    </div>
   );
 }
 
@@ -72,7 +93,8 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
         <div className="absolute left-0 top-0 h-full w-[14.7%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
         <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
         <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft solid /></div>
-        <div className="absolute bottom-2 right-2 rounded bg-background/90 px-2 py-1 text-[10px] font-black text-foreground">{theme.code}</div>
+        <BrandMask theme={theme} compact={compact} />
+        <div className="absolute bottom-2 right-2 z-20 rounded bg-background/90 px-2 py-1 text-[10px] font-black text-foreground">{theme.code}</div>
       </div>
       {!compact && <p className="px-3 py-2 text-xs text-muted-foreground">Desktop home view · same TigerExchange structure</p>}
     </div>
@@ -85,6 +107,7 @@ function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: b
       <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
         <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
         <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
+        <LoginBrandMask theme={theme} />
         <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
       </div>
       {!compact && <p className="px-3 py-2 text-xs text-muted-foreground">Mobile login view · two-color mix</p>}
