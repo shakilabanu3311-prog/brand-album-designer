@@ -53,12 +53,6 @@ const themes = [
   ["Wt05", "Platinum Play", ["#F4F4F0", "#121212", "#C6A15B", "#8F1D2C"], "elite", "White"],
 ] as const satisfies readonly Theme[];
 
-function contrast(hex: string) {
-  const c = hex.replace("#", "");
-  const r = parseInt(c.slice(0, 2), 16), g = parseInt(c.slice(2, 4), 16), b = parseInt(c.slice(4, 6), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? "#101217" : "#F8F3E7";
-}
-
 function HeaderTint({ color }: { color: string }) {
   return <div className="pointer-events-none absolute inset-0 opacity-75 [mix-blend-mode:color]" style={{ background: color }} />;
 }
