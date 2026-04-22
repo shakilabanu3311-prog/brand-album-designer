@@ -166,11 +166,13 @@ function ThemeDetail({ theme }: { theme: Theme }) {
 
 const Index = () => {
   const [selectedCode, setSelectedCode] = useState("Gn01");
+  const [previewCode, setPreviewCode] = useState<string | null>(null);
   const selected = themes.find((theme) => theme[0] === selectedCode) ?? themes[0];
+  const previewTheme = themes.find((theme) => theme[0] === previewCode) ?? null;
 
   const chooseTheme = (code: string) => {
     setSelectedCode(code);
-    window.setTimeout(() => document.getElementById("theme-detail")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+    setPreviewCode(code);
   };
 
   return (
@@ -189,7 +191,7 @@ const Index = () => {
               <h1 className="max-w-4xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">Pick a theme. Open the exact product preview.</h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">This is a customer-facing album for your B2B website product. Every color theme keeps the TigerExchange structure so clients can approve a design and developers can build from the same handoff.</p>
               <div className="mt-8 grid grid-cols-3 gap-3 max-w-xl">
-                {[['35','Themes'],['7','Color groups'],['Desktop + Mobile','Views']].map(([n,l]) => <div key={l} className="rounded-lg border border-border bg-card/75 p-4 backdrop-blur"><p className="text-2xl font-black text-primary sm:text-3xl">{n}</p><p className="text-xs uppercase tracking-widest text-muted-foreground">{l}</p></div>)}
+                {[[themes.length.toString(),'Themes'],['7','Color groups'],['Desktop + Mobile','Views']].map(([n,l]) => <div key={l} className="rounded-lg border border-border bg-card/75 p-4 backdrop-blur"><p className="text-2xl font-black text-primary sm:text-3xl">{n}</p><p className="text-xs uppercase tracking-widest text-muted-foreground">{l}</p></div>)}
               </div>
             </div>
             <div className="relative rounded-xl border border-border bg-card-sheen p-4 shadow-premium">
@@ -246,6 +248,7 @@ const Index = () => {
           {[['Album structure', 'Grouped like the reference gallery: color section, count, theme code, preview.'], ['Developer handoff', 'Every detail view includes HTML color codes and module mapping.'], ['Real product match', 'TigerExchange-like desktop and mobile flows, not generic landing pages.']].map(([title, body], i) => <div key={title} className="rounded-xl border border-border bg-card/75 p-6"><div className="mb-4 grid h-10 w-10 place-items-center rounded-lg bg-muted text-primary">{i === 0 ? <Grid3X3/> : i === 1 ? <Palette/> : <Layers3/>}</div><h3 className="font-black">{title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p></div>)}
         </div>
       </section>
+      {previewTheme && <ThemePreviewModal theme={previewTheme} onClose={() => setPreviewCode(null)} />}
     </main>
   );
 };
