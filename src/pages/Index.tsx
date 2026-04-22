@@ -6,7 +6,7 @@ const colorGroups = [
   { name: "Orange", count: 5, dot: "bg-tiger" },
   { name: "Red", count: 5, dot: "bg-accent" },
   { name: "Blue", count: 5, dot: "bg-secondary" },
-  { name: "Purple", count: 5, dot: "bg-violet-500" },
+  { name: "Purple", count: 5, dot: "bg-accent" },
   { name: "White", count: 4, dot: "bg-foreground" },
 ];
 
