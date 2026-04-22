@@ -58,18 +58,10 @@ function ThemeWash({ primary, secondary, soft = false, solid = false }: { primar
   );
 }
 
-function LogoMark({ theme, compact = false, vertical = false }: { theme: Theme; compact?: boolean; vertical?: boolean }) {
+function LogoMark({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   const textColor = ["#f4b51f", "#ffca2a", "#f2b632", "#e7b422", "#f0b429", "#dca72b", "#e2b33a", "#e4b137", "#d8a82f", "#f0a11f"].includes(theme.primary.toLowerCase()) ? "#111111" : "#FFFFFF";
   return (
-    <div className={`flex items-center justify-center ${vertical ? "flex-col gap-1.5" : "gap-2"}`}>
-      <div
-        className={`${compact ? "h-5 w-5" : "h-8 w-8"} grid shrink-0 place-items-center rounded-md border border-border/60 shadow-glow`}
-        style={{ background: theme.secondary }}
-      >
-        <span className={`${compact ? "text-[10px]" : "text-sm"} font-black`} style={{ color: theme.primary }}>E</span>
-      </div>
-      <span className={`${compact ? "text-[7px]" : vertical ? "text-[11px]" : "text-xs"} font-black leading-none tracking-wider`} style={{ color: textColor }}>EXCH PRO</span>
-    </div>
+    <span className={`${compact ? "text-[8px]" : "text-sm"} font-black leading-none tracking-widest`} style={{ color: textColor }}>LOGO</span>
   );
 }
 
@@ -77,7 +69,7 @@ function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
       <div className="absolute left-0 top-0 grid h-[24%] w-[14.7%] place-items-center px-1 text-center" style={{ background: theme.primary }}>
-        <LogoMark theme={theme} compact={compact} vertical />
+        <LogoMark theme={theme} compact={compact} />
       </div>
       <div className="absolute left-[39%] top-[1.8%] grid h-[8.2%] w-[24%] place-items-center rounded-sm" style={{ background: theme.primary }}>
         <LogoMark theme={theme} compact={compact} />
