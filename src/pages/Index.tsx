@@ -11,25 +11,25 @@ type Theme = {
 };
 
 const themes: Theme[] = [
-  { code: "T01", name: "Tiger Gold", primary: "#F5B51B", secondary: "#101010" },
-  { code: "T02", name: "Exchange Green", primary: "#18A058", secondary: "#07120C" },
-  { code: "T03", name: "Bookmaker Blue", primary: "#1E63E9", secondary: "#061126" },
-  { code: "T04", name: "Cricket Emerald", primary: "#00A86B", secondary: "#081A12" },
-  { code: "T05", name: "Royal Red", primary: "#D72638", secondary: "#120608" },
-  { code: "T06", name: "Orange Pro", primary: "#F47A1F", secondary: "#130B05" },
-  { code: "T07", name: "Aqua Exchange", primary: "#08AFC7", secondary: "#061417" },
-  { code: "T08", name: "Violet Club", primary: "#7542E8", secondary: "#10081D" },
-  { code: "T09", name: "Amber Black", primary: "#FFCA2A", secondary: "#080808" },
-  { code: "T10", name: "Signal Red", primary: "#F03745", secondary: "#101014" },
-  { code: "T11", name: "Deep Navy", primary: "#2E7BF6", secondary: "#050B18" },
-  { code: "T12", name: "Casino Mint", primary: "#38D98B", secondary: "#06110C" },
-  { code: "T13", name: "Copper Night", primary: "#D8772C", secondary: "#120C08" },
-  { code: "T14", name: "Magenta Bet", primary: "#CF2F91", secondary: "#150814" },
-  { code: "T15", name: "Teal Sport", primary: "#0C949E", secondary: "#061315" },
+  { code: "T01", name: "Gold Classic", primary: "#F4B51F", secondary: "#111111" },
+  { code: "T02", name: "Emerald Pro", primary: "#18A058", secondary: "#07120C" },
+  { code: "T03", name: "Royal Blue", primary: "#1E63E9", secondary: "#061126" },
+  { code: "T04", name: "Cricket Green", primary: "#00A86B", secondary: "#081A12" },
+  { code: "T05", name: "Crimson Book", primary: "#D72638", secondary: "#120608" },
+  { code: "T06", name: "Orange Club", primary: "#F47A1F", secondary: "#130B05" },
+  { code: "T07", name: "Aqua Market", primary: "#08AFC7", secondary: "#061417" },
+  { code: "T08", name: "Violet Prime", primary: "#7542E8", secondary: "#10081D" },
+  { code: "T09", name: "Amber Elite", primary: "#FFCA2A", secondary: "#080808" },
+  { code: "T10", name: "Red Signal", primary: "#F03745", secondary: "#101014" },
+  { code: "T11", name: "Navy Sport", primary: "#2E7BF6", secondary: "#050B18" },
+  { code: "T12", name: "Mint Casino", primary: "#38D98B", secondary: "#06110C" },
+  { code: "T13", name: "Copper Desk", primary: "#D8772C", secondary: "#120C08" },
+  { code: "T14", name: "Magenta VIP", primary: "#CF2F91", secondary: "#150814" },
+  { code: "T15", name: "Teal Ledger", primary: "#0C949E", secondary: "#061315" },
   { code: "T16", name: "Ruby Gold", primary: "#C51F34", secondary: "#DCA72B" },
   { code: "T17", name: "Forest Gold", primary: "#13733E", secondary: "#D8A82F" },
   { code: "T18", name: "Blue Amber", primary: "#1B56D8", secondary: "#F0A11F" },
-  { code: "T19", name: "Lime Black", primary: "#9AD529", secondary: "#090C06" },
+  { code: "T19", name: "Lime Dark", primary: "#9AD529", secondary: "#090C06" },
   { code: "T20", name: "Fireline", primary: "#FF4D1F", secondary: "#0B0B0B" },
   { code: "T21", name: "Purple Gold", primary: "#6534C9", secondary: "#E2B33A" },
   { code: "T22", name: "Sky Black", primary: "#2FA8FF", secondary: "#06101A" },
@@ -52,20 +52,35 @@ const themes: Theme[] = [
 function ThemeWash({ primary, secondary, soft = false, solid = false }: { primary: string; secondary: string; soft?: boolean; solid?: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-38" : "opacity-62"} [mix-blend-mode:color]`}
-      style={{ background: solid ? primary : `linear-gradient(135deg, ${primary} 0%, ${primary} 62%, ${secondary} 100%)` }}
+      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-34" : "opacity-58"} [mix-blend-mode:color]`}
+      style={{ background: solid ? primary : `linear-gradient(135deg, ${primary} 0%, ${primary} 64%, ${secondary} 100%)` }}
     />
+  );
+}
+
+function LogoMark({ theme, compact = false, vertical = false }: { theme: Theme; compact?: boolean; vertical?: boolean }) {
+  const textColor = theme.secondary.toLowerCase() === "#111111" || theme.secondary.toLowerCase() === "#080808" || theme.secondary.toLowerCase() === "#151515" ? "#101010" : "#FFFFFF";
+  return (
+    <div className={`flex items-center justify-center ${vertical ? "flex-col gap-1" : "gap-1.5"}`}>
+      <div
+        className={`${compact ? "h-4 w-4" : "h-6 w-6"} grid shrink-0 place-items-center rounded-md border border-border shadow-glow`}
+        style={{ background: `linear-gradient(135deg, ${theme.secondary}, ${theme.primary})` }}
+      >
+        <span className={`${compact ? "text-[8px]" : "text-[11px]"} font-black`} style={{ color: textColor }}>E</span>
+      </div>
+      <span className={`${compact ? "text-[6px]" : vertical ? "text-[9px]" : "text-[10px]"} font-black leading-none tracking-wider`} style={{ color: textColor }}>EXCHPRO</span>
+    </div>
   );
 }
 
 function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
-      <div className="absolute left-0 top-0 grid h-[20%] w-[14.7%] place-items-center px-1 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
-        <span className={`${compact ? "text-[7px]" : "text-[10px] sm:text-xs"} font-black leading-tight text-primary-foreground drop-shadow`}>EXCHANGE</span>
+      <div className="absolute left-0 top-0 grid h-[22%] w-[14.7%] place-items-center px-1 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+        <LogoMark theme={theme} compact={compact} vertical />
       </div>
-      <div className="absolute left-[44%] top-[3.5%] grid h-[5.8%] w-[16%] place-items-center rounded-sm" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
-        <span className={`${compact ? "text-[5px]" : "text-[8px]"} font-black tracking-wider text-primary-foreground`}>EXCHANGE</span>
+      <div className="absolute left-[41.5%] top-[2.6%] grid h-[7.2%] w-[22%] place-items-center rounded-sm shadow-premium" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+        <LogoMark theme={theme} compact={compact} />
       </div>
     </div>
   );
@@ -73,8 +88,8 @@ function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean
 
 function LoginBrandMask({ theme }: { theme: Theme }) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 grid h-[18%] place-items-center px-4 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
-      <span className="text-2xl font-black tracking-widest text-primary-foreground drop-shadow sm:text-3xl">EXCHANGE</span>
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 grid h-[20%] place-items-center px-4 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+      <LogoMark theme={theme} />
     </div>
   );
 }
@@ -86,24 +101,24 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
         <span className="h-2.5 w-2.5 rounded-full bg-primary" />
         <span className="h-2.5 w-2.5 rounded-full bg-accent" />
         <span className="h-2.5 w-2.5 rounded-full bg-secondary" />
-        <span className="ml-3 truncate text-[10px] font-bold text-muted-foreground">tigerexchange247.co/home</span>
+        <span className="ml-3 truncate text-[10px] font-bold text-muted-foreground">exchange-demo.com/home</span>
       </div>
       <div className="relative aspect-[16/8.7] overflow-hidden bg-panel-strong">
-        <img src={tigerHomeReference} alt={`${theme.name} desktop TigerExchange preview`} className="h-[112%] w-full object-cover object-top" loading="lazy" />
+        <img src={tigerHomeReference} alt={`${theme.name} desktop exchange preview`} className="h-[112%] w-full object-cover object-top" loading="lazy" />
         <div className="absolute left-0 top-0 h-full w-[14.7%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
         <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
         <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft solid /></div>
         <BrandMask theme={theme} compact={compact} />
         <div className="absolute bottom-2 right-2 z-20 rounded bg-background/90 px-2 py-1 text-[10px] font-black text-foreground">{theme.code}</div>
       </div>
-      {!compact && <p className="px-3 py-2 text-xs text-muted-foreground">Desktop home view · same TigerExchange structure</p>}
+      {!compact && <p className="px-3 py-2 text-xs text-muted-foreground">Desktop home view · same exchange structure</p>}
     </div>
   );
 }
 
 function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
-    <div className="mx-auto w-full max-w-[280px] overflow-hidden rounded-[1.6rem] border-[8px] border-panel-strong bg-card shadow-premium">
+    <div className="mx-auto w-full max-w-[300px] overflow-hidden rounded-[1.6rem] border-[8px] border-panel-strong bg-card shadow-premium">
       <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
         <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
         <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
@@ -168,14 +183,14 @@ const Index = () => {
           <nav className="mb-8 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-md bg-gold-strike text-primary-foreground shadow-glow"><Palette size={20} /></div>
-              <div><p className="text-sm font-black tracking-[0.2em]">TIGEREXCH THEME ALBUM</p><p className="text-xs text-muted-foreground">single color selection · desktop + mobile</p></div>
+              <div><p className="text-sm font-black tracking-[0.2em]">EXCHANGE THEME ALBUM</p><p className="text-xs text-muted-foreground">single color selection · desktop + mobile</p></div>
             </div>
           </nav>
 
           <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-2 text-xs text-muted-foreground backdrop-blur"><Eye size={14}/> Click a color theme to open full preview</div>
-              <h1 className="max-w-4xl text-3xl font-black leading-tight sm:text-6xl lg:text-7xl">TigerExchange preview in one selected color.</h1>
+              <h1 className="max-w-4xl text-3xl font-black leading-tight sm:text-6xl lg:text-7xl">Exchange preview in one selected color.</h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">Only the header, sidebar, key bars and login color areas change. The site image stays same, so customers can compare exact color themes and send one code to developers.</p>
               <div className="mt-7 grid max-w-lg grid-cols-2 gap-3">
                 <div className="rounded-md border border-border bg-card/75 p-4 backdrop-blur"><p className="text-2xl font-black text-primary">{themes.length}</p><p className="text-xs uppercase tracking-widest text-muted-foreground">Theme previews</p></div>
@@ -201,9 +216,9 @@ const Index = () => {
               const isActive = selected.code === theme.code;
               return (
                 <button key={theme.code} onClick={() => chooseTheme(theme.code)} className={`group overflow-hidden rounded-lg border bg-card-sheen text-left shadow-premium transition duration-300 hover:-translate-y-1 hover:border-primary/70 ${isActive ? "border-primary" : "border-border"}`}>
-                  <div className="grid grid-cols-[1fr_68px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
+                  <div className="grid grid-cols-[1fr_82px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
                   <div className="border-t border-border p-4">
-                    <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{theme.code} · {theme.name}</h3><p className="text-sm text-muted-foreground">TigerExchange site preview</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
+                    <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{theme.code} · {theme.name}</h3><p className="text-sm text-muted-foreground">Exchange site preview</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
                     <div className="grid grid-cols-2 gap-2">
                       {[theme.primary, theme.secondary].map((color) => <div key={color} className="rounded-md border border-border p-2" style={{ background: color }}><span className="block rounded bg-background/85 px-1 py-0.5 text-[10px] font-bold text-foreground">{color}</span></div>)}
                     </div>
