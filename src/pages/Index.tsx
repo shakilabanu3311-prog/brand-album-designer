@@ -52,7 +52,7 @@ const themes: Theme[] = [
 function ThemeWash({ primary, secondary, soft = false, solid = false }: { primary: string; secondary: string; soft?: boolean; solid?: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-34" : "opacity-58"} [mix-blend-mode:color]`}
+      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-28" : "opacity-52"} [mix-blend-mode:color]`}
       style={{ background: solid ? primary : `linear-gradient(135deg, ${primary} 0%, ${primary} 64%, ${secondary} 100%)` }}
     />
   );
@@ -61,14 +61,14 @@ function ThemeWash({ primary, secondary, soft = false, solid = false }: { primar
 function LogoMark({ theme, compact = false, vertical = false }: { theme: Theme; compact?: boolean; vertical?: boolean }) {
   const textColor = ["#f4b51f", "#ffca2a", "#f2b632", "#e7b422", "#f0b429", "#dca72b", "#e2b33a", "#e4b137", "#d8a82f", "#f0a11f"].includes(theme.primary.toLowerCase()) ? "#111111" : "#FFFFFF";
   return (
-    <div className={`flex items-center justify-center ${vertical ? "flex-col gap-1" : "gap-2"}`}>
+    <div className={`flex items-center justify-center ${vertical ? "flex-col gap-1.5" : "gap-2"}`}>
       <div
-        className={`${compact ? "h-5 w-5" : "h-7 w-7"} grid shrink-0 place-items-center rounded-md border border-border/60 shadow-glow`}
+        className={`${compact ? "h-5 w-5" : "h-8 w-8"} grid shrink-0 place-items-center rounded-md border border-border/60 shadow-glow`}
         style={{ background: theme.secondary }}
       >
         <span className={`${compact ? "text-[10px]" : "text-sm"} font-black`} style={{ color: theme.primary }}>E</span>
       </div>
-      <span className={`${compact ? "text-[7px]" : vertical ? "text-[10px]" : "text-xs"} font-black leading-none tracking-wider`} style={{ color: textColor }}>EXCH PRO</span>
+      <span className={`${compact ? "text-[7px]" : vertical ? "text-[11px]" : "text-xs"} font-black leading-none tracking-wider`} style={{ color: textColor }}>EXCH PRO</span>
     </div>
   );
 }
@@ -76,14 +76,12 @@ function LogoMark({ theme, compact = false, vertical = false }: { theme: Theme; 
 function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
-      <div className="absolute left-0 top-0 grid h-[25%] w-[14.7%] place-items-center px-1 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+      <div className="absolute left-0 top-0 grid h-[24%] w-[14.7%] place-items-center px-1 text-center" style={{ background: theme.primary }}>
         <LogoMark theme={theme} compact={compact} vertical />
       </div>
-      <div className="absolute left-[38.5%] top-[1.8%] grid h-[9%] w-[29%] place-items-center rounded-sm shadow-premium" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+      <div className="absolute left-[39%] top-[1.8%] grid h-[8.2%] w-[24%] place-items-center rounded-sm" style={{ background: theme.primary }}>
         <LogoMark theme={theme} compact={compact} />
       </div>
-      <div className="absolute left-[18.5%] top-[4.1%] h-[4.4%] w-[26%] rounded-sm" style={{ background: theme.primary }} />
-      <div className="absolute left-[58%] top-[4.1%] h-[4.4%] w-[22%] rounded-sm" style={{ background: theme.primary }} />
     </div>
   );
 }
