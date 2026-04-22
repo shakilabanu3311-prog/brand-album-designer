@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldCheck, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldCheck, Sparkles } from "lucide-react";
+import tigerHomeReference from "@/assets/tiger-home-reference.png";
+import tigerLoginReference from "@/assets/tiger-login-reference.png";
 
 type Theme = readonly [code: string, name: string, palette: readonly string[], mood: string, group: string];
 
@@ -51,31 +53,17 @@ const themes = [
   ["Wt05", "Platinum Play", ["#F4F4F0", "#121212", "#C6A15B", "#8F1D2C"], "elite", "White"],
 ] as const satisfies readonly Theme[];
 
-const sportTiles = ["American Football", "Basketball", "Snooker", "Sportsbook", "Cricket", "Tennis"];
-const providers = ["JILI", "KINGMAKER", "EZUGI", "EVOLUTION", "VIVO", "BETGAMES"];
-const markets = ["Asia Handicap", "England O: Sri Lanka", "Ireland 1:0 India", "Surrey vs Glamorgan"];
-
-function contrast(hex: string) {
-  const c = hex.replace("#", "");
-  const r = parseInt(c.slice(0, 2), 16), g = parseInt(c.slice(2, 4), 16), b = parseInt(c.slice(4, 6), 16);
-  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? "#101217" : "#F8F3E7";
+function HeaderTint({ color }: { color: string }) {
+  return <div className="pointer-events-none absolute inset-0 opacity-75 [mix-blend-mode:color]" style={{ background: color }} />;
 }
 
 function MiniLogin({ palette, code }: { palette: readonly string[]; code: string }) {
   return (
     <div className="relative aspect-video overflow-hidden rounded-lg border border-border bg-panel-strong">
-      <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 16% 12%, ${palette[0]}, transparent 36%), linear-gradient(135deg, ${palette[1]}, ${palette[2]})` }} />
-      <div className="absolute left-[18%] top-[20%] h-[58%] w-[64%] rounded-md border border-foreground/20 bg-background/25 backdrop-blur-sm">
-        <div className="grid h-full grid-cols-2">
-          <div className="flex items-center justify-center text-xs font-black tracking-widest" style={{ color: palette[3] }}>TIGEREXCH</div>
-          <div className="p-3 text-[8px]" style={{ background: palette[0], color: contrast(palette[0]) }}>
-            <b>{code} Sign In</b>
-            <div className="mt-2 h-3 rounded-sm bg-foreground/80" />
-            <div className="mt-1 h-3 rounded-sm bg-foreground/80" />
-            <div className="mt-2 h-3 rounded-sm" style={{ background: palette[1] }} />
-          </div>
-        </div>
-      </div>
+      <img src={tigerHomeReference} alt={`${code} TigerExchange home preview`} className="h-full w-full object-cover object-top" loading="lazy" />
+      <div className="absolute left-[14.7%] top-0 h-[22%] w-[85.3%]"><HeaderTint color={palette[0]} /></div>
+      <div className="absolute left-0 top-0 h-full w-[14.7%]"><HeaderTint color={palette[0]} /></div>
+      <div className="absolute bottom-2 right-2 rounded bg-background/90 px-2 py-1 text-[10px] font-black text-foreground">{code}</div>
     </div>
   );
 }
@@ -84,23 +72,11 @@ function TigerHomeImage({ theme }: { theme: Theme }) {
   const [code, , palette] = theme;
   return (
     <div className="overflow-hidden rounded-md border border-border bg-card shadow-premium">
-      <div className="grid aspect-[16/9] grid-cols-[15%_85%] text-[8px] sm:text-[10px]" style={{ background: palette[2], color: contrast(palette[2]) }}>
-        <aside className="space-y-1 p-2" style={{ background: palette[2] }}>
-          <div className="mb-3 text-center text-base font-black leading-none" style={{ color: palette[0] }}>TIGER<br/><span style={{ color: palette[3] }}>EXCH</span></div>
-          {['HOME', 'DEPOSIT', 'WITHDRAWAL', 'WHATSAPP', 'AURA', 'CASINO', 'ICASINO', 'A/C STATEMENT', 'RULES', 'PROFILE'].map((item) => <div key={item} className="rounded-sm px-2 py-1.5 font-bold tracking-widest" style={{ background: `${palette[3]}55`, color: contrast(palette[3]) }}>{item}</div>)}
-        </aside>
-        <section className="overflow-hidden">
-          <div className="flex h-5 items-center justify-between px-2 text-xs font-black" style={{ background: palette[3], color: contrast(palette[3]) }}><span>Balance : PTI</span><span>Exp : 0</span></div>
-          <div className="grid h-12 place-items-center text-xl font-black tracking-widest" style={{ background: palette[2] }}><span><span style={{ color: palette[0] }}>TIGER</span><span style={{ color: palette[3] }}>EXCH</span></span></div>
-          <div className="py-1 text-center text-xs font-black tracking-widest" style={{ background: palette[3], color: contrast(palette[3]) }}>WELCOME TO OUR EXCHANGE , WE HAVE LAUNCHED 4500+ GAMES IN NEW I-CASINO</div>
-          <div className="grid grid-cols-2 gap-4 p-2"><div className="rounded-sm py-2 text-center text-sm font-black" style={{ background: `linear-gradient(90deg, ${palette[3]}, ${palette[0]})`, color: contrast(palette[0]) }}>🏦 DEPOSIT</div><div className="rounded-sm py-2 text-center text-sm font-black" style={{ background: `linear-gradient(90deg, ${palette[0]}, ${palette[3]})`, color: contrast(palette[0]) }}>💵 WITHDRAW</div></div>
-          <div className="grid grid-cols-7 gap-2 px-2 pb-2">{['IN-PLAY', 'CRICKET', 'SPORTSBOOK', 'AURA', 'LIVE CASINO', 'FOOTBALL', 'TENNIS'].map((item, i) => <div key={item} className="rounded-sm py-2 text-center font-black" style={{ background: i === 0 ? palette[0] : palette[3], color: contrast(i === 0 ? palette[0] : palette[3]) }}>{item}</div>)}</div>
-          <div className="flex gap-3 overflow-hidden px-2 py-2" style={{ background: `${palette[1]}22` }}>{providers.concat(['POKER', 'UP DOWN', 'Teen Patti']).map((p, i) => <div key={`${p}-${i}`} className="grid h-10 min-w-16 place-items-center rounded-md px-2 text-center font-black" style={{ background: `radial-gradient(circle, ${palette[0]}, ${palette[1]})`, color: contrast(palette[0]) }}>{p}</div>)}</div>
-          <div className="px-2 py-1 text-xs font-black tracking-widest" style={{ background: palette[3], color: contrast(palette[3]) }}>CRICKET</div>
-          <div className="bg-background text-foreground">
-            {['Pakistan Super League', 'Indian Premier League', 'Lucknow Super Giants Vs Rajasthan Royals', 'Hyderabad Kingsmen Vs Multan Sultans', 'South Africa W Vs India W'].map((match, i) => <div key={match} className="grid grid-cols-[43%_9%_48%] items-center border-b border-border px-2 py-2"><div><b>{i ? '22/Apr/2026 07:30 PM' : '24/Mar/2026 12:00 PM'}</b><br/>{match}</div><div className="h-2 w-2 rounded-full" style={{ background: palette[0] }} /><div className="grid grid-cols-6 gap-1">{['1.63','2.8','10','-','4.2','4.9'].map((odd, j) => <span key={`${odd}-${j}`} className="rounded-sm py-1 text-center font-black" style={{ background: j % 2 ? palette[0] : palette[3], color: contrast(j % 2 ? palette[0] : palette[3]) }}>{odd}<small className="block">{j ? '11.53' : '7.21'}</small></span>)}</div></div>)}
-          </div>
-        </section>
+      <div className="relative aspect-[16/9] overflow-hidden bg-panel-strong">
+        <img src={tigerHomeReference} alt={`${code} TigerExchange home design`} className="h-full w-full object-cover object-top" loading="lazy" />
+        <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><HeaderTint color={palette[0]} /></div>
+        <div className="absolute left-0 top-0 h-full w-[14.7%]"><HeaderTint color={palette[0]} /></div>
+        <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><HeaderTint color={palette[0]} /></div>
       </div>
       <p className="px-3 py-2 text-xs text-muted-foreground">Home design image · {code}</p>
     </div>
@@ -111,14 +87,10 @@ function TigerMobileMock({ theme }: { theme: Theme }) {
   const [code, , palette] = theme;
   return (
     <div className="mx-auto max-w-[360px] overflow-hidden rounded-md border border-border bg-card shadow-premium">
-      <div className="relative aspect-[4/3] p-5" style={{ background: palette[2], color: contrast(palette[2]) }}>
-        <button className="absolute right-0 top-0 grid h-12 w-12 place-items-center rounded-bl-lg" style={{ background: palette[0], color: contrast(palette[0]) }}><X size={20}/></button>
-        <div className="mb-8 mt-3 text-center text-5xl font-black tracking-widest"><span style={{ color: palette[0] }}>TIGER</span><span style={{ color: palette[3] }}>EXCH</span></div>
-        <h4 className="mb-5 text-center text-4xl font-black">Login</h4>
-        {['Username', 'Password'].map((field) => <label key={field} className="mb-4 block text-2xl"><span>{field}</span><input className="mt-2 h-10 w-full rounded-md border border-border bg-background px-4 text-sm text-foreground outline-none" placeholder={field} /></label>)}
-        <label className="flex items-center gap-3 text-xl"><span className="h-6 w-6 rounded border border-border bg-background" />Remember me</label>
-        <div className="mt-8 grid grid-cols-2 gap-3"><button className="rounded-lg py-4 text-lg font-black" style={{ background: palette[0], color: contrast(palette[0]) }}>Login</button><button className="rounded-lg py-4 text-lg font-black" style={{ background: palette[0], color: contrast(palette[0]) }}>Demo Login</button></div>
-        <p className="mt-5 text-xl">Forgot password?</p>
+      <div className="relative aspect-[9/16] overflow-hidden bg-panel-strong">
+        <img src={tigerLoginReference} alt={`${code} TigerExchange login design without logo`} className="h-full w-full object-cover object-top" loading="lazy" />
+        <div className="absolute inset-0 opacity-70 [mix-blend-mode:color]" style={{ background: palette[0] }} />
+        <div className="absolute inset-x-[8%] bottom-[15%] h-[12%] rounded-lg opacity-80 [mix-blend-mode:color]" style={{ background: palette[0] }} />
       </div>
       <p className="px-3 py-2 text-xs text-muted-foreground">Login image without tiger logo · {code}</p>
     </div>
