@@ -8,35 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 225 29% 5%;
+    --foreground: 42 42% 94%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 224 23% 9%;
+    --card-foreground: 42 42% 94%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 224 23% 9%;
+    --popover-foreground: 42 42% 94%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 39 93% 54%;
+    --primary-foreground: 226 42% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217 77% 45%;
+    --secondary-foreground: 42 42% 94%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 225 18% 15%;
+    --muted-foreground: 42 15% 67%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 352 71% 50%;
+    --accent-foreground: 42 42% 94%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 24% 88% / 0.16;
+    --input: 225 18% 15%;
+    --ring: 39 93% 54%;
 
     --radius: 0.5rem;
+    --tiger: 25 95% 52%;
+    --casino: 147 64% 43%;
+    --panel: 224 24% 11%;
+    --panel-strong: 222 34% 7%;
+    --surface-glow: 39 93% 54% / 0.18;
+    --gradient-hero: radial-gradient(circle at 20% 0%, hsl(var(--surface-glow)), transparent 28%), linear-gradient(135deg, hsl(225 29% 5%), hsl(222 34% 7%) 56%, hsl(26 44% 10%));
+    --gradient-card: linear-gradient(145deg, hsl(224 24% 11% / 0.96), hsl(225 29% 5% / 0.92));
+    --gradient-gold: linear-gradient(135deg, hsl(43 95% 58%), hsl(25 95% 52%));
+    --shadow-premium: 0 24px 80px hsl(225 48% 2% / 0.55);
+    --shadow-glow: 0 0 48px hsl(var(--surface-glow));
 
     --sidebar-background: 0 0% 98%;
 
