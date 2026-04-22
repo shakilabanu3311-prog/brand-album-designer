@@ -61,15 +61,17 @@ function ThemeWash({ primary, secondary, soft = false, solid = false }: { primar
 function LogoMark({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   const textColor = ["#f4b51f", "#ffca2a", "#f2b632", "#e7b422", "#f0b429", "#dca72b", "#e2b33a", "#e4b137", "#d8a82f", "#f0a11f"].includes(theme.primary.toLowerCase()) ? "#111111" : "#FFFFFF";
   return (
-    <span className={`${compact ? "text-[5px]" : "text-[8px]"} block font-black leading-none tracking-[0.12em]`} style={{ color: textColor }}>LOGO</span>
+    <span className={`${compact ? "text-[5px]" : "text-[8px]"} block max-w-full whitespace-nowrap text-center font-black leading-none tracking-[0.1em]`} style={{ color: textColor }}>LOGO</span>
   );
 }
 
 function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
-      <div className="absolute left-0 top-0 grid h-[23.5%] w-[14.7%] place-items-center text-center" style={{ background: theme.primary }}>
-        <LogoMark theme={theme} />
+      <div className="absolute left-0 top-0 flex h-[23.5%] w-[14.7%] items-start justify-center px-[1.8%] pt-[3.6%] text-center" style={{ background: theme.primary }}>
+        <div className="grid h-[22%] min-h-[12px] w-full place-items-center overflow-hidden">
+          <LogoMark theme={theme} compact={compact} />
+        </div>
       </div>
       <div className="absolute left-[14.7%] top-0 h-[10%] w-[85.3%]" style={{ background: theme.primary }} />
     </div>
