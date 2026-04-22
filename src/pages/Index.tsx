@@ -49,11 +49,11 @@ const themes: Theme[] = [
   { code: "T36", name: "Classic Yellow", primary: "#E7B422", secondary: "#151515" },
 ];
 
-function ThemeWash({ primary, secondary, soft = false }: { primary: string; secondary: string; soft?: boolean }) {
+function ThemeWash({ primary, secondary, soft = false, solid = false }: { primary: string; secondary: string; soft?: boolean; solid?: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-45" : "opacity-72"} [mix-blend-mode:color]`}
-      style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}
+      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-42" : "opacity-70"} [mix-blend-mode:color]`}
+      style={{ background: solid ? primary : `linear-gradient(135deg, ${primary} 0%, ${primary} 58%, ${secondary} 100%)` }}
     />
   );
 }
@@ -69,9 +69,9 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
       </div>
       <div className="relative aspect-[16/8.7] overflow-hidden bg-panel-strong">
         <img src={tigerHomeReference} alt={`${theme.name} desktop TigerExchange preview`} className="h-[112%] w-full object-cover object-top" loading="lazy" />
-        <div className="absolute left-0 top-0 h-full w-[14.7%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
-        <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
-        <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
+        <div className="absolute left-0 top-0 h-full w-[14.7%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
+        <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
+        <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft solid /></div>
         <div className="absolute bottom-2 right-2 rounded bg-background/90 px-2 py-1 text-[10px] font-black text-foreground">{theme.code}</div>
       </div>
       {!compact && <p className="px-3 py-2 text-xs text-muted-foreground">Desktop home view · same TigerExchange structure</p>}
@@ -81,10 +81,10 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
 
 function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
-    <div className="mx-auto w-full max-w-[330px] overflow-hidden rounded-[1.8rem] border-[10px] border-panel-strong bg-card shadow-premium">
-      <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1.1rem] bg-panel-strong">
-        <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-cover object-top" loading="lazy" />
-        <div className="absolute inset-x-0 top-0 h-[64%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
+    <div className="mx-auto w-full max-w-[280px] overflow-hidden rounded-[1.6rem] border-[8px] border-panel-strong bg-card shadow-premium">
+      <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
+        <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
+        <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
         <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
       </div>
       {!compact && <p className="px-3 py-2 text-xs text-muted-foreground">Mobile login view · two-color mix</p>}
@@ -117,7 +117,7 @@ function ThemePreviewModal({ theme, onClose }: { theme: Theme; onClose: () => vo
           </div>
         </div>
 
-        <div className="grid gap-5 xl:grid-cols-[1.42fr_0.58fr]">
+        <div className="grid gap-5 xl:grid-cols-[1.45fr_0.55fr]">
           <div><h3 className="mb-3 flex items-center gap-2 text-lg font-black"><Monitor size={18} /> Desktop view</h3><DesktopView theme={theme} /></div>
           <div><h3 className="mb-3 flex items-center gap-2 text-lg font-black"><Smartphone size={18} /> Mobile login</h3><MobileLoginView theme={theme} /></div>
         </div>
@@ -178,7 +178,7 @@ const Index = () => {
               const isActive = selected.code === theme.code;
               return (
                 <button key={theme.code} onClick={() => chooseTheme(theme.code)} className={`group overflow-hidden rounded-lg border bg-card-sheen text-left shadow-premium transition duration-300 hover:-translate-y-1 hover:border-primary/70 ${isActive ? "border-primary" : "border-border"}`}>
-                  <div className="grid grid-cols-[1fr_76px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
+                  <div className="grid grid-cols-[1fr_68px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
                   <div className="border-t border-border p-4">
                     <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{theme.code} · {theme.name}</h3><p className="text-sm text-muted-foreground">TigerExchange site preview</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
                     <div className="grid grid-cols-2 gap-2">
