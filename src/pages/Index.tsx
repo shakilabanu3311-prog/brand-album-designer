@@ -2,12 +2,12 @@ import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldC
 
 const colorGroups = [
   { name: "Yellow", count: 5, dot: "bg-primary" },
-  { name: "Green", count: 4, dot: "bg-casino" },
+  { name: "Green", count: 5, dot: "bg-casino" },
   { name: "Orange", count: 5, dot: "bg-tiger" },
   { name: "Red", count: 5, dot: "bg-accent" },
   { name: "Blue", count: 5, dot: "bg-secondary" },
   { name: "Purple", count: 5, dot: "bg-accent" },
-  { name: "White", count: 4, dot: "bg-foreground" },
+  { name: "White", count: 5, dot: "bg-foreground" },
 ];
 
 const themes = [
@@ -20,6 +20,7 @@ const themes = [
   ["Gn02", "Pitch Green", ["#1FA46B", "#242829", "#82D1A6", "#F1C84B"], "sportsbook", "Green"],
   ["Gn03", "Jade Racing", ["#56C48B", "#050505", "#DDEFE4", "#E33C46"], "sharp", "Green"],
   ["Gn04", "Forest Odds", ["#0F4D26", "#08180D", "#F3D37A", "#FFFFFF"], "deep", "Green"],
+  ["Gn05", "Mint Ledger", ["#6EE7B7", "#062016", "#DFFFEF", "#F4B63B"], "fresh", "Green"],
   ["Og01", "Tangerine VIP", ["#FF8A1C", "#080808", "#4A2A11", "#F6F0E8"], "fast", "Orange"],
   ["Og02", "Neon Orange", ["#FF6B00", "#FFFFFF", "#332116", "#1389E8"], "bright", "Orange"],
   ["Og03", "Copper Club", ["#C9702E", "#12100D", "#E7BC78", "#3B77D8"], "luxury", "Orange"],
@@ -44,6 +45,7 @@ const themes = [
   ["Wt02", "Silver Market", ["#E8EAEE", "#20242B", "#5D7FA6", "#F0B33B"], "corporate", "White"],
   ["Wt03", "Ivory Casino", ["#FFF6E1", "#2B2118", "#B57C22", "#2E9C70"], "warm", "White"],
   ["Wt04", "Cloud Ledger", ["#F8FAFC", "#0F172A", "#2563EB", "#F59E0B"], "admin", "White"],
+  ["Wt05", "Platinum Play", ["#F4F4F0", "#121212", "#C6A15B", "#8F1D2C"], "elite", "White"],
 ] as const;
 
 const sports = ["Cricket", "Football", "Tennis", "Basketball", "Horse Racing", "Live Casino"];
