@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldCheck, Sparkles, X } from "lucide-react";
 import tigerHomeReference from "@/assets/tiger-home-reference.png";
 import tigerLoginReference from "@/assets/tiger-login-reference.png";
 
 type Theme = readonly [code: string, name: string, palette: readonly string[], mood: string, group: string];
 
 const colorGroups = [
-  { name: "Yellow", count: 5, dot: "bg-primary" },
-  { name: "Green", count: 5, dot: "bg-casino" },
-  { name: "Orange", count: 5, dot: "bg-tiger" },
-  { name: "Red", count: 5, dot: "bg-accent" },
-  { name: "Blue", count: 5, dot: "bg-secondary" },
-  { name: "Purple", count: 5, dot: "bg-accent" },
-  { name: "White", count: 5, dot: "bg-foreground" },
+  { name: "Yellow", count: 7, dot: "bg-primary" },
+  { name: "Green", count: 7, dot: "bg-casino" },
+  { name: "Orange", count: 7, dot: "bg-tiger" },
+  { name: "Red", count: 7, dot: "bg-accent" },
+  { name: "Blue", count: 7, dot: "bg-secondary" },
+  { name: "Purple", count: 7, dot: "bg-accent" },
+  { name: "White", count: 7, dot: "bg-foreground" },
 ];
 
 const themes = [
@@ -21,36 +21,50 @@ const themes = [
   ["Yl03", "Solar Bet", ["#E8B923", "#0D1117", "#746A35", "#FDF8E8"], "warm premium", "Yellow"],
   ["Yl04", "Olive Gold", ["#D6B44D", "#4A4327", "#0F1710", "#E24B3B"], "club dark", "Yellow"],
   ["Yl05", "Crown Night", ["#FFB900", "#090A0D", "#3C4666", "#F1F1F1"], "casino royal", "Yellow"],
+  ["Yl06", "Midas Header", ["#D9A019", "#10131A", "#FFE08A", "#2A78D4"], "classic", "Yellow"],
+  ["Yl07", "Lemon Pro", ["#F5D13D", "#171717", "#FFF4BE", "#D8333F"], "bright", "Yellow"],
   ["Gn01", "Emerald Desk", ["#2F9C65", "#070A08", "#163226", "#F5F7F4"], "trust", "Green"],
   ["Gn02", "Pitch Green", ["#1FA46B", "#242829", "#82D1A6", "#F1C84B"], "sportsbook", "Green"],
   ["Gn03", "Jade Racing", ["#56C48B", "#050505", "#DDEFE4", "#E33C46"], "sharp", "Green"],
   ["Gn04", "Forest Odds", ["#0F4D26", "#08180D", "#F3D37A", "#FFFFFF"], "deep", "Green"],
   ["Gn05", "Mint Ledger", ["#6EE7B7", "#062016", "#DFFFEF", "#F4B63B"], "fresh", "Green"],
+  ["Gn06", "Betting Turf", ["#168A4A", "#101410", "#B6E7C9", "#F0B429"], "field", "Green"],
+  ["Gn07", "Neon Mint", ["#35D48A", "#070A08", "#E3FFF2", "#E63546"], "neon", "Green"],
   ["Og01", "Tangerine VIP", ["#FF8A1C", "#080808", "#4A2A11", "#F6F0E8"], "fast", "Orange"],
   ["Og02", "Neon Orange", ["#FF6B00", "#FFFFFF", "#332116", "#1389E8"], "bright", "Orange"],
   ["Og03", "Copper Club", ["#C9702E", "#12100D", "#E7BC78", "#3B77D8"], "luxury", "Orange"],
   ["Og04", "Fireline", ["#FF4F1F", "#140705", "#FFD07A", "#F5F5F5"], "promo", "Orange"],
   ["Og05", "Sunset Odds", ["#F47B32", "#201B2D", "#F6C56E", "#47C6B2"], "modern", "Orange"],
+  ["Og06", "Amber Club", ["#F59A23", "#14100B", "#FFE0A8", "#2477D9"], "warm", "Orange"],
+  ["Og07", "Burnt Saffron", ["#D96516", "#17110D", "#F6C18A", "#22A06B"], "strong", "Orange"],
   ["Rd01", "Ruby Arena", ["#D92E3A", "#09080A", "#5B1017", "#F7EDEE"], "bold", "Red"],
   ["Rd02", "Crimson Bonus", ["#B6162B", "#1C0E12", "#FFB540", "#FFFFFF"], "promo", "Red"],
   ["Rd03", "Scarlet Pro", ["#E64040", "#16181D", "#6F7787", "#F8F8F8"], "operator", "Red"],
   ["Rd04", "Lava Black", ["#F0442D", "#050505", "#33100C", "#F2C35B"], "intense", "Red"],
   ["Rd05", "Rose Exchange", ["#C43362", "#11141B", "#F4BDD0", "#F5F1EA"], "premium", "Red"],
+  ["Rd06", "Cherry Header", ["#C81931", "#110B0D", "#FFCAD1", "#F0B53F"], "sharp", "Red"],
+  ["Rd07", "Signal Red", ["#F23545", "#101014", "#FFC3C9", "#2684D9"], "alert", "Red"],
   ["Bu01", "Royal Blue", ["#1D63E9", "#05070B", "#8CB4FF", "#F6C343"], "clean", "Blue"],
   ["Bu02", "Ice Market", ["#00A5D8", "#091018", "#B9F1FF", "#FFFFFF"], "fresh", "Blue"],
   ["Bu03", "Midnight Odds", ["#2447A8", "#050A18", "#DBE7FF", "#F0A92B"], "classic", "Blue"],
   ["Bu04", "Teal Sports", ["#0E8F9E", "#071517", "#52E0D0", "#F8F4E6"], "fluid", "Blue"],
   ["Bu05", "Sky Casino", ["#3AA4FF", "#10213A", "#EAF6FF", "#FFCB4D"], "bright", "Blue"],
+  ["Bu06", "Bookmaker Navy", ["#1B4FD8", "#070B15", "#BFD4FF", "#F5A623"], "pro", "Blue"],
+  ["Bu07", "Aqua Exchange", ["#16B8C8", "#071315", "#C7FBFF", "#D83B4B"], "fresh", "Blue"],
   ["Pl01", "Violet Jackpot", ["#7A3DFF", "#0B0712", "#C7A7FF", "#FFBE36"], "neon", "Purple"],
   ["Pl02", "Plum Exchange", ["#6836B7", "#171020", "#E1C8FF", "#26C485"], "club", "Purple"],
   ["Pl03", "Orchid Night", ["#B342D6", "#0E0712", "#F1D8FB", "#F4B63B"], "casino", "Purple"],
   ["Pl04", "Ultraviolet", ["#5F4BFF", "#080713", "#29D3B4", "#FFFFFF"], "tech", "Purple"],
   ["Pl05", "Magenta Prime", ["#D934A4", "#150A16", "#FFB8E8", "#F6C04B"], "vip", "Purple"],
+  ["Pl06", "Royal Violet", ["#6D42D8", "#100A18", "#D6C2FF", "#E9B23C"], "royal", "Purple"],
+  ["Pl07", "Purple Line", ["#8A2BE2", "#120817", "#EDCCFF", "#35C48B"], "modern", "Purple"],
   ["Wt01", "Pearl Book", ["#F7F5EF", "#151515", "#D9AA3D", "#D62839"], "light", "White"],
   ["Wt02", "Silver Market", ["#E8EAEE", "#20242B", "#5D7FA6", "#F0B33B"], "corporate", "White"],
   ["Wt03", "Ivory Casino", ["#FFF6E1", "#2B2118", "#B57C22", "#2E9C70"], "warm", "White"],
   ["Wt04", "Cloud Ledger", ["#F8FAFC", "#0F172A", "#2563EB", "#F59E0B"], "admin", "White"],
   ["Wt05", "Platinum Play", ["#F4F4F0", "#121212", "#C6A15B", "#8F1D2C"], "elite", "White"],
+  ["Wt06", "Frost Header", ["#EDF2F7", "#18202B", "#4F83C4", "#D89B2B"], "clean", "White"],
+  ["Wt07", "White Gold", ["#FFFFFF", "#171717", "#CFA43A", "#D62D3F"], "premium", "White"],
 ] as const satisfies readonly Theme[];
 
 function HeaderTint({ color }: { color: string }) {
