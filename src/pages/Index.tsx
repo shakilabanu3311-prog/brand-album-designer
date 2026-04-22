@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Eye, Monitor, Palette, Smartphone, X } from "lucide-react";
+import cricketLoginHero from "@/assets/cricket-login-hero.jpg";
 import tigerHomeReference from "@/assets/tiger-home-reference.png";
 import tigerLoginReference from "@/assets/tiger-login-reference.png";
 
@@ -61,7 +62,7 @@ function ThemeWash({ primary, secondary, soft = false, solid = false }: { primar
 function LogoMark({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   const textColor = ["#f4b51f", "#ffca2a", "#f2b632", "#e7b422", "#f0b429", "#dca72b", "#e2b33a", "#e4b137", "#d8a82f", "#f0a11f"].includes(theme.primary.toLowerCase()) ? "#111111" : "#FFFFFF";
   return (
-    <span className={`${compact ? "text-[8px]" : "text-sm"} font-black leading-none tracking-widest`} style={{ color: textColor }}>LOGO</span>
+    <span className={`${compact ? "text-[7px]" : "text-xs"} block max-w-full truncate font-black leading-none tracking-wider`} style={{ color: textColor }}>LOGO</span>
   );
 }
 
@@ -80,7 +81,7 @@ function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean
 
 function LoginBrandMask({ theme }: { theme: Theme }) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 grid h-[21%] place-items-center px-4 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+    <div className="pointer-events-none absolute inset-x-[8%] top-[4%] z-20 grid h-[7%] place-items-center rounded-md px-4 text-center shadow-premium" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
       <LogoMark theme={theme} />
     </div>
   );
@@ -113,6 +114,10 @@ function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: b
     <div className="mx-auto w-full max-w-[286px] overflow-hidden rounded-[1.5rem] border-[7px] border-panel-strong bg-card shadow-premium">
       <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
         <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
+        <div className="absolute inset-x-0 top-0 h-[34%] overflow-hidden">
+          <img src={cricketLoginHero} alt="Cricket login visual" width={1024} height={768} className="h-full w-full object-cover object-[38%_top]" loading="lazy" />
+          <div className="absolute inset-0 opacity-45" style={{ background: `linear-gradient(180deg, ${theme.secondary}, ${theme.primary})` }} />
+        </div>
         <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
         <LoginBrandMask theme={theme} />
         <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
