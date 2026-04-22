@@ -59,16 +59,16 @@ function ThemeWash({ primary, secondary, soft = false, solid = false }: { primar
 }
 
 function LogoMark({ theme, compact = false, vertical = false }: { theme: Theme; compact?: boolean; vertical?: boolean }) {
-  const textColor = theme.secondary.toLowerCase() === "#111111" || theme.secondary.toLowerCase() === "#080808" || theme.secondary.toLowerCase() === "#151515" ? "#101010" : "#FFFFFF";
+  const textColor = ["#f4b51f", "#ffca2a", "#f2b632", "#e7b422", "#f0b429", "#dca72b", "#e2b33a", "#e4b137", "#d8a82f", "#f0a11f"].includes(theme.primary.toLowerCase()) ? "#111111" : "#FFFFFF";
   return (
-    <div className={`flex items-center justify-center ${vertical ? "flex-col gap-1" : "gap-1.5"}`}>
+    <div className={`flex items-center justify-center ${vertical ? "flex-col gap-1" : "gap-2"}`}>
       <div
-        className={`${compact ? "h-4 w-4" : "h-6 w-6"} grid shrink-0 place-items-center rounded-md border border-border shadow-glow`}
-        style={{ background: `linear-gradient(135deg, ${theme.secondary}, ${theme.primary})` }}
+        className={`${compact ? "h-5 w-5" : "h-7 w-7"} grid shrink-0 place-items-center rounded-md border border-border/60 shadow-glow`}
+        style={{ background: theme.secondary }}
       >
-        <span className={`${compact ? "text-[8px]" : "text-[11px]"} font-black`} style={{ color: textColor }}>E</span>
+        <span className={`${compact ? "text-[10px]" : "text-sm"} font-black`} style={{ color: theme.primary }}>E</span>
       </div>
-      <span className={`${compact ? "text-[6px]" : vertical ? "text-[9px]" : "text-[10px]"} font-black leading-none tracking-wider`} style={{ color: textColor }}>EXCHPRO</span>
+      <span className={`${compact ? "text-[7px]" : vertical ? "text-[10px]" : "text-xs"} font-black leading-none tracking-wider`} style={{ color: textColor }}>EXCH PRO</span>
     </div>
   );
 }
@@ -76,19 +76,21 @@ function LogoMark({ theme, compact = false, vertical = false }: { theme: Theme; 
 function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
-      <div className="absolute left-0 top-0 grid h-[22%] w-[14.7%] place-items-center px-1 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+      <div className="absolute left-0 top-0 grid h-[25%] w-[14.7%] place-items-center px-1 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
         <LogoMark theme={theme} compact={compact} vertical />
       </div>
-      <div className="absolute left-[41.5%] top-[2.6%] grid h-[7.2%] w-[22%] place-items-center rounded-sm shadow-premium" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+      <div className="absolute left-[38.5%] top-[1.8%] grid h-[9%] w-[29%] place-items-center rounded-sm shadow-premium" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
         <LogoMark theme={theme} compact={compact} />
       </div>
+      <div className="absolute left-[18.5%] top-[4.1%] h-[4.4%] w-[26%] rounded-sm" style={{ background: theme.primary }} />
+      <div className="absolute left-[58%] top-[4.1%] h-[4.4%] w-[22%] rounded-sm" style={{ background: theme.primary }} />
     </div>
   );
 }
 
 function LoginBrandMask({ theme }: { theme: Theme }) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 grid h-[20%] place-items-center px-4 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 grid h-[21%] place-items-center px-4 text-center" style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})` }}>
       <LogoMark theme={theme} />
     </div>
   );
@@ -101,7 +103,7 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
         <span className="h-2.5 w-2.5 rounded-full bg-primary" />
         <span className="h-2.5 w-2.5 rounded-full bg-accent" />
         <span className="h-2.5 w-2.5 rounded-full bg-secondary" />
-        <span className="ml-3 truncate text-[10px] font-bold text-muted-foreground">exchange-demo.com/home</span>
+        <span className="ml-3 truncate text-[9px] font-bold text-muted-foreground">exchange-demo.com</span>
       </div>
       <div className="relative aspect-[16/8.7] overflow-hidden bg-panel-strong">
         <img src={tigerHomeReference} alt={`${theme.name} desktop exchange preview`} className="h-[112%] w-full object-cover object-top" loading="lazy" />
@@ -118,7 +120,7 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
 
 function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
-    <div className="mx-auto w-full max-w-[300px] overflow-hidden rounded-[1.6rem] border-[8px] border-panel-strong bg-card shadow-premium">
+    <div className="mx-auto w-full max-w-[286px] overflow-hidden rounded-[1.5rem] border-[7px] border-panel-strong bg-card shadow-premium">
       <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
         <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
         <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
@@ -216,7 +218,7 @@ const Index = () => {
               const isActive = selected.code === theme.code;
               return (
                 <button key={theme.code} onClick={() => chooseTheme(theme.code)} className={`group overflow-hidden rounded-lg border bg-card-sheen text-left shadow-premium transition duration-300 hover:-translate-y-1 hover:border-primary/70 ${isActive ? "border-primary" : "border-border"}`}>
-                  <div className="grid grid-cols-[1fr_82px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
+                  <div className="grid grid-cols-[1fr_78px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
                   <div className="border-t border-border p-4">
                     <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{theme.code} · {theme.name}</h3><p className="text-sm text-muted-foreground">Exchange site preview</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
                     <div className="grid grid-cols-2 gap-2">
