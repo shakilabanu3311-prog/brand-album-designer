@@ -61,7 +61,7 @@ function ThemeWash({ primary, secondary, soft = false, solid = false }: { primar
 function LogoMark({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   const textColor = ["#f4b51f", "#ffca2a", "#f2b632", "#e7b422", "#f0b429", "#dca72b", "#e2b33a", "#e4b137", "#d8a82f", "#f0a11f"].includes(theme.primary.toLowerCase()) ? "#111111" : "#FFFFFF";
   return (
-    <span className={`${compact ? "text-[6px]" : "text-[11px]"} block font-black leading-none tracking-[0.22em]`} style={{ color: textColor }}>LOGO</span>
+    <span className={`${compact ? "text-[5px]" : "text-[9px]"} block font-black leading-none tracking-normal`} style={{ color: textColor }}>LOGO</span>
   );
 }
 
@@ -71,9 +71,6 @@ function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean
       <div className="absolute left-0 top-0 h-[23.5%] w-[14.7%]" style={{ background: theme.primary }} />
       <div className="absolute left-[14.7%] top-0 h-[10%] w-[85.3%]" style={{ background: theme.primary }} />
       <div className="absolute left-[3.2%] top-[9.2%] grid h-[4.2%] w-[8.6%] place-items-center px-1 text-center">
-        <LogoMark theme={theme} compact={compact} />
-      </div>
-      <div className="absolute left-[45.2%] top-[3.8%] grid h-[3.8%] w-[12%] place-items-center text-center">
         <LogoMark theme={theme} compact={compact} />
       </div>
     </div>
