@@ -1,4 +1,7 @@
-import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldCheck, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Download, Eye, Grid3X3, Layers3, MonitorSmartphone, Palette, Search, ShieldCheck, Sparkles, X } from "lucide-react";
+
+type Theme = readonly [code: string, name: string, palette: readonly string[], mood: string, group: string];
 
 const colorGroups = [
   { name: "Yellow", count: 5, dot: "bg-primary" },
@@ -46,38 +49,26 @@ const themes = [
   ["Wt03", "Ivory Casino", ["#FFF6E1", "#2B2118", "#B57C22", "#2E9C70"], "warm", "White"],
   ["Wt04", "Cloud Ledger", ["#F8FAFC", "#0F172A", "#2563EB", "#F59E0B"], "admin", "White"],
   ["Wt05", "Platinum Play", ["#F4F4F0", "#121212", "#C6A15B", "#8F1D2C"], "elite", "White"],
-] as const;
+] as const satisfies readonly Theme[];
 
-const sports = ["Cricket", "Football", "Tennis", "Basketball", "Horse Racing", "Live Casino"];
+const sportTiles = ["American Football", "Basketball", "Snooker", "Sportsbook", "Cricket", "Tennis"];
+const providers = ["JILI", "KINGMAKER", "EZUGI", "EVOLUTION", "VIVO", "BETGAMES"];
+const markets = ["Asia Handicap", "England O: Sri Lanka", "Ireland 1:0 India", "Surrey vs Glamorgan"];
 
-function PhoneMock({ palette, code }: { palette: readonly string[]; code: string }) {
-  return (
-    <div className="relative mx-auto aspect-[10/14] w-full max-w-[220px] overflow-hidden rounded-lg border border-border bg-panel-strong shadow-premium">
-      <div className="h-8 px-3 flex items-center justify-between text-[10px] text-foreground/80" style={{ background: palette[1] }}>
-        <span className="font-bold tracking-widest">TIGER</span><span>{code}</span>
-      </div>
-      <div className="h-20 p-3" style={{ background: `linear-gradient(135deg, ${palette[0]}, ${palette[2]})` }}>
-        <p className="text-xs font-black uppercase text-background">Bonus 5%</p>
-        <p className="mt-1 text-[10px] text-background/80">Sports • Casino • Exchange</p>
-      </div>
-      <div className="grid grid-cols-2 gap-2 p-3">
-        {sports.slice(0, 4).map((sport, i) => <div key={sport} className="h-12 rounded-md p-2 text-[9px] font-bold text-foreground" style={{ background: i % 2 ? palette[1] : palette[3], color: i % 2 ? palette[3] : palette[1] }}>{sport}</div>)}
-      </div>
-      <div className="absolute bottom-3 left-3 right-3 rounded-md p-2" style={{ background: palette[0] }}>
-        <div className="h-2 w-2/3 rounded-full bg-background/70" />
-      </div>
-    </div>
-  );
+function contrast(hex: string) {
+  const c = hex.replace("#", "");
+  const r = parseInt(c.slice(0, 2), 16), g = parseInt(c.slice(2, 4), 16), b = parseInt(c.slice(4, 6), 16);
+  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? "#101217" : "#F8F3E7";
 }
 
-function LoginMock({ palette, code }: { palette: readonly string[]; code: string }) {
+function MiniLogin({ palette, code }: { palette: readonly string[]; code: string }) {
   return (
     <div className="relative aspect-video overflow-hidden rounded-lg border border-border bg-panel-strong">
-      <div className="absolute inset-0 opacity-90" style={{ background: `radial-gradient(circle at 20% 20%, ${palette[0]}, transparent 34%), linear-gradient(135deg, ${palette[1]}, ${palette[2]})` }} />
+      <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 16% 12%, ${palette[0]}, transparent 36%), linear-gradient(135deg, ${palette[1]}, ${palette[2]})` }} />
       <div className="absolute left-[18%] top-[20%] h-[58%] w-[64%] rounded-md border border-foreground/20 bg-background/25 backdrop-blur-sm">
         <div className="grid h-full grid-cols-2">
           <div className="flex items-center justify-center text-sm font-black tracking-widest" style={{ color: palette[3] }}>Logo</div>
-          <div className="p-3 text-[8px]" style={{ background: palette[0], color: palette[1] }}>
+          <div className="p-3 text-[8px]" style={{ background: palette[0], color: contrast(palette[0]) }}>
             <b>{code} Sign In</b>
             <div className="mt-2 h-3 rounded-sm bg-foreground/80" />
             <div className="mt-1 h-3 rounded-sm bg-foreground/80" />
@@ -89,30 +80,117 @@ function LoginMock({ palette, code }: { palette: readonly string[]; code: string
   );
 }
 
+function TigerDesktopMock({ theme }: { theme: Theme }) {
+  const [code, , palette] = theme;
+  return (
+    <div className="overflow-hidden rounded-lg border border-border bg-panel-strong shadow-premium">
+      <div className="flex items-center justify-between px-5 py-3" style={{ background: palette[1], color: contrast(palette[1]) }}>
+        <div className="flex items-center gap-2 font-black tracking-[0.18em]"><span className="text-lg">🐯</span>TIGEREXCH</div>
+        <div className="flex items-center gap-2 text-xs"><span>Home</span><span className="rounded-md px-3 py-1 font-bold" style={{ background: palette[0], color: contrast(palette[0]) }}>Login</span><span className="rounded-md px-3 py-1 font-bold" style={{ background: palette[0], color: contrast(palette[0]) }}>Join Now</span></div>
+      </div>
+      <div className="p-5" style={{ background: `linear-gradient(135deg, ${palette[1]}, ${palette[2]}55)` }}>
+        <div className="rounded-lg p-6" style={{ background: `linear-gradient(90deg, ${palette[3]}22, ${palette[0]}88)` }}>
+          <p className="text-2xl font-black uppercase leading-tight" style={{ color: contrast(palette[0]) }}>Welcome bonus on 1st deposit 5%</p>
+          <p className="mt-1 text-sm font-bold" style={{ color: contrast(palette[0]) }}>Refer bonus upto 10% · Weekly loss back 3%</p>
+        </div>
+        <div className="mt-4 flex justify-center gap-2"><span className="h-1 w-10 rounded-full bg-foreground" /><span className="h-1 w-10 rounded-full bg-muted" /><span className="h-1 w-10 rounded-full bg-muted" /></div>
+        <div className="mt-5 flex items-center justify-between"><h4 className="rounded-md px-4 py-2 text-sm font-black" style={{ background: palette[3], color: contrast(palette[3]) }}>Sports</h4><div className="flex gap-2"><ChevronLeft size={16}/><ChevronRight size={16}/></div></div>
+        <div className="mt-3 grid grid-cols-4 gap-3">
+          {sportTiles.slice(0, 4).map((s, i) => <div key={s} className="h-24 rounded-lg p-4 text-sm font-black shadow-premium" style={{ background: `linear-gradient(135deg, ${i % 2 ? palette[2] : palette[0]}, ${palette[1]})`, color: contrast(i % 2 ? palette[2] : palette[0]) }}>{s}</div>)}
+        </div>
+        <h4 className="mt-5 inline-block rounded-md px-4 py-2 text-sm font-black" style={{ background: palette[3], color: contrast(palette[3]) }}>Our Providers</h4>
+        <div className="mt-3 grid grid-cols-4 gap-3">
+          {providers.slice(0, 4).map((p, i) => <div key={p} className="h-20 rounded-lg p-4 text-lg font-black" style={{ background: i % 2 ? palette[1] : palette[0], color: contrast(i % 2 ? palette[1] : palette[0]) }}>{p}</div>)}
+        </div>
+        <p className="mt-4 text-xs text-muted-foreground">Desktop handoff · {code} · header, bonus slider, sports carousel, providers, favourites, in-play market modules.</p>
+      </div>
+    </div>
+  );
+}
+
+function TigerMobileMock({ theme }: { theme: Theme }) {
+  const [code, , palette] = theme;
+  return (
+    <div className="mx-auto max-w-[330px] overflow-hidden rounded-xl border border-border bg-card shadow-premium">
+      <div className="flex items-center justify-between px-3 py-2 text-xs font-black" style={{ background: palette[0], color: contrast(palette[0]) }}><span>⚙ Bets</span><span>Main USD 10,000.00</span><span>+4</span></div>
+      <div className="flex items-center gap-2 px-3 py-2 text-xs" style={{ background: palette[1], color: contrast(palette[1]) }}><span>🎙 News</span><span>17 Apr 2019</span><span>-Notice: Wallet</span></div>
+      <div className="h-20 p-3" style={{ background: `linear-gradient(90deg, ${palette[0]}, ${palette[2]})`, color: contrast(palette[0]) }}><p className="text-xl font-black">Teen Patti 20-20</p><p className="text-xs">live bonus banner</p></div>
+      <div className="grid grid-cols-5 text-center text-[10px] font-bold" style={{ background: palette[1], color: contrast(palette[1]) }}>{["Casino", "Cricket", "Soccer", "Menu", "Search"].map((n) => <span key={n} className="border-r border-border p-2 last:border-r-0">{n}</span>)}</div>
+      <div className="p-3" style={{ background: palette[3], color: contrast(palette[3]) }}>
+        <h5 className="mb-2 text-center text-sm font-black">Highlights</h5>
+        {markets.map((m, i) => <div key={m} className="mb-2 rounded-md border border-border bg-background/85 p-2 text-xs text-foreground"><span className="font-bold" style={{ color: palette[0] }}>●</span> {m}<span className="float-right rounded px-1" style={{ background: palette[0], color: contrast(palette[0]) }}>{i % 2 ? "F" : "P"}</span></div>)}
+      </div>
+      <div className="relative p-5" style={{ background: `linear-gradient(135deg, ${palette[2]}, ${palette[1]})` }}>
+        <button className="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full bg-background/80 text-foreground"><X size={14}/></button>
+        <div className="mb-5 grid h-28 place-items-center rounded-lg border border-foreground/20 bg-background/20 text-3xl font-black backdrop-blur-sm" style={{ color: palette[3] }}>Logo</div>
+        {['Username', 'Password', 'Validation Code'].map((f, i) => <div key={f} className="mb-2 rounded-md bg-foreground px-3 py-2 text-xs text-background">{f}<span className="float-right font-black">{i === 2 ? '6279' : ''}</span></div>)}
+        <div className="rounded-md py-2 text-center text-sm font-black" style={{ background: palette[0], color: contrast(palette[0]) }}>Login · {code}</div>
+      </div>
+    </div>
+  );
+}
+
+function ThemeDetail({ theme }: { theme: Theme }) {
+  const [code, name, palette, mood, group] = theme;
+  return (
+    <section id="theme-detail" className="rounded-xl border border-border bg-card/75 p-4 shadow-premium backdrop-blur sm:p-6">
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-xs text-muted-foreground"><MonitorSmartphone size={14}/> Open theme preview for customers + developers</div>
+          <h2 className="text-3xl font-black sm:text-5xl">{code} · {name}</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">TigerExchange demo structure in {group.toLowerCase()} theme: desktop home, mobile market list, mobile login overlay, sports carousel, providers, favourites and color handoff.</p>
+        </div>
+        <a href="/theme-album.pdf" className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition hover:scale-105"><Download size={16}/> Download PDF</a>
+      </div>
+
+      <div className="mb-6 grid gap-3 sm:grid-cols-4">
+        {palette.map((color, i) => <div key={color} className="rounded-lg border border-border bg-panel p-3"><div className="mb-2 h-14 rounded-md border border-border" style={{ background: color }} /><p className="text-xs text-muted-foreground">Color {i + 1}</p><p className="font-mono text-sm font-black">{color}</p></div>)}
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+        <div><h3 className="mb-3 text-2xl font-black">Desktop</h3><TigerDesktopMock theme={theme} /></div>
+        <div><h3 className="mb-3 text-2xl font-black">Mobile + Login</h3><TigerMobileMock theme={theme} /></div>
+      </div>
+
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {[['Developer note', 'Use these exact HTML colors for header, bonus banner, CTA, mobile tabs and login panel.'], ['Customer view', 'This preview shows how the same TigerExchange product changes by theme, not a different website.'], ['Included pages', `${mood} login, home, sports carousel, providers, favourites, in-play list and mobile overlay.`]].map(([title, body]) => <div key={title} className="rounded-lg border border-border bg-panel p-4"><h4 className="font-black">{title}</h4><p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p></div>)}
+      </div>
+    </section>
+  );
+}
+
 const Index = () => {
+  const [selectedCode, setSelectedCode] = useState("Gn01");
+  const selected = themes.find((theme) => theme[0] === selectedCode) ?? themes[0];
+
+  const chooseTheme = (code: string) => {
+    setSelectedCode(code);
+    window.setTimeout(() => document.getElementById("theme-detail")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  };
+
   return (
     <main className="min-h-screen bg-hero-field text-foreground">
       <section className="relative overflow-hidden px-4 py-6 sm:px-8 lg:px-12">
         <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(hsl(var(--foreground)/0.05)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground)/0.05)_1px,transparent_1px)] [background-size:44px_44px]" />
         <div className="relative mx-auto max-w-7xl">
-          <nav className="mb-10 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-lg bg-gold-strike text-primary-foreground shadow-glow"><Sparkles size={20} /></div><div><p className="text-sm font-black tracking-[0.22em]">B2B THEME ALBUM</p><p className="text-xs text-muted-foreground">Tiger Exchange style catalog</p></div></div>
+          <nav className="mb-8 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-lg bg-gold-strike text-primary-foreground shadow-glow"><Sparkles size={20} /></div><div><p className="text-sm font-black tracking-[0.22em]">TIGEREXCH PRODUCT ALBUM</p><p className="text-xs text-muted-foreground">35 precise website themes</p></div></div>
             <a href="/theme-album.pdf" className="hidden items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition hover:scale-105 sm:flex"><Download size={16}/> PDF Catalog</a>
           </nav>
 
-          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-2 text-xs text-muted-foreground backdrop-blur"><ShieldCheck size={14}/> analyzed Notion gallery + TigerExchange home</div>
-              <h1 className="max-w-4xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">35 ready-to-sell B2B website themes.</h1>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">Customer-facing album with color groups, HTML color codes, login-page previews, and home-page direction for sportsbook, casino, and exchange sites.</p>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-2 text-xs text-muted-foreground backdrop-blur"><ShieldCheck size={14}/> TigerExchange analyzed: desktop, mobile, login, sports, providers</div>
+              <h1 className="max-w-4xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">Pick a theme. Open the exact product preview.</h1>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">This is a customer-facing album for your B2B website product. Every color theme keeps the TigerExchange structure so clients can approve a design and developers can build from the same handoff.</p>
               <div className="mt-8 grid grid-cols-3 gap-3 max-w-xl">
-                {[['35','Themes'],['7','Color groups'],['2','Page types']].map(([n,l]) => <div key={l} className="rounded-lg border border-border bg-card/75 p-4 backdrop-blur"><p className="text-3xl font-black text-primary">{n}</p><p className="text-xs uppercase tracking-widest text-muted-foreground">{l}</p></div>)}
+                {[['35','Themes'],['7','Color groups'],['Desktop + Mobile','Views']].map(([n,l]) => <div key={l} className="rounded-lg border border-border bg-card/75 p-4 backdrop-blur"><p className="text-2xl font-black text-primary sm:text-3xl">{n}</p><p className="text-xs uppercase tracking-widest text-muted-foreground">{l}</p></div>)}
               </div>
             </div>
-            <div className="group relative rounded-xl border border-border bg-card-sheen p-4 shadow-premium transition duration-500 hover:-translate-y-2">
-              <div className="absolute -inset-1 -z-10 rounded-xl bg-gold-strike opacity-20 blur-2xl transition group-hover:opacity-35" />
-              <div className="mb-3 flex items-center justify-between"><span className="text-sm font-bold">Featured home concept</span><Eye size={18} className="text-primary" /></div>
-              <PhoneMock palette={themes[24][2]} code="Pl01" />
+            <div className="relative rounded-xl border border-border bg-card-sheen p-4 shadow-premium">
+              <div className="absolute -inset-1 -z-10 rounded-xl bg-gold-strike opacity-20 blur-2xl" />
+              <div className="mb-3 flex items-center justify-between"><span className="text-sm font-bold">Live selected theme</span><Eye size={18} className="text-primary" /></div>
+              <TigerDesktopMock theme={selected} />
             </div>
           </div>
         </div>
@@ -121,39 +199,46 @@ const Index = () => {
       <section className="px-4 pb-6 sm:px-8 lg:px-12">
         <div className="mx-auto max-w-7xl rounded-xl border border-border bg-card/65 p-4 shadow-premium backdrop-blur">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-sm"><Search size={15}/> Search by code/color</div>
+            <div className="flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-sm"><Search size={15}/> Click any theme to open preview</div>
             {colorGroups.map((g) => <a key={g.name} href={`#${g.name}`} className="flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm transition hover:border-primary hover:text-primary"><span className={`h-3 w-3 rounded-sm ${g.dot}`} />{g.name}<span className="text-muted-foreground">{g.count}</span></a>)}
           </div>
         </div>
       </section>
 
       <section className="px-4 py-8 sm:px-8 lg:px-12">
-        <div className="mx-auto max-w-7xl space-y-12">
-          {colorGroups.map((group) => {
-            const items = themes.filter((t) => t[4] === group.name);
-            return (
-              <div id={group.name} key={group.name}>
-                <div className="mb-5 flex items-center justify-between"><h2 className="flex items-center gap-3 text-2xl font-black"><span className={`h-4 w-4 rounded-sm ${group.dot}`} />{group.name}</h2><span className="text-sm text-muted-foreground">{items.length} concepts</span></div>
-                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                  {items.map(([code, name, palette, mood]) => (
-                    <article key={code} className="group overflow-hidden rounded-xl border border-border bg-card-sheen shadow-premium transition duration-300 hover:-translate-y-1 hover:border-primary/70">
-                      <div className="p-4"><LoginMock palette={palette} code={code} /></div>
-                      <div className="border-t border-border p-4">
-                        <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{code} · {name}</h3><p className="text-sm capitalize text-muted-foreground">{mood} login + home theme</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
-                        <div className="grid grid-cols-4 gap-2">{palette.map((c) => <div key={c} className="rounded-md border border-border p-2" style={{ background: c }}><span className="block rounded bg-background/80 px-1 py-0.5 text-[10px] font-bold text-foreground">{c}</span></div>)}</div>
-                      </div>
-                    </article>
-                  ))}
+        <div className="mx-auto grid max-w-7xl gap-6 xl:grid-cols-[0.88fr_1.12fr]">
+          <div className="space-y-10">
+            {colorGroups.map((group) => {
+              const items = themes.filter((theme) => theme[4] === group.name);
+              return (
+                <div id={group.name} key={group.name}>
+                  <div className="mb-4 flex items-center justify-between"><h2 className="flex items-center gap-3 text-2xl font-black"><span className={`h-4 w-4 rounded-sm ${group.dot}`} />{group.name}</h2><span className="text-sm text-muted-foreground">{items.length} concepts</span></div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {items.map((theme) => {
+                      const [code, name, palette, mood] = theme;
+                      const isActive = selectedCode === code;
+                      return (
+                        <button key={code} onClick={() => chooseTheme(code)} className={`group overflow-hidden rounded-xl border bg-card-sheen text-left shadow-premium transition duration-300 hover:-translate-y-1 hover:border-primary/70 ${isActive ? 'border-primary' : 'border-border'}`}>
+                          <div className="p-3"><MiniLogin palette={palette} code={code} /></div>
+                          <div className="border-t border-border p-4">
+                            <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{code} · {name}</h3><p className="text-sm capitalize text-muted-foreground">{mood} TigerExchange theme</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
+                            <div className="grid grid-cols-4 gap-2">{palette.map((color) => <div key={color} className="rounded-md border border-border p-2" style={{ background: color }}><span className="block rounded bg-background/80 px-1 py-0.5 text-[10px] font-bold text-foreground">{color}</span></div>)}</div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <div className="xl:sticky xl:top-6 xl:self-start"><ThemeDetail theme={selected} /></div>
         </div>
       </section>
 
       <section className="px-4 py-12 sm:px-8 lg:px-12">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
-          {[['Album structure', 'Grouped like your Notion reference: color section, count, theme code, preview.'], ['Customer handoff', 'Every card includes HTML color codes and visual direction.'], ['Page coverage', 'Login mockups plus home-page sports/casino layout direction.']].map(([title, body], i) => <div key={title} className="rounded-xl border border-border bg-card/75 p-6"><div className="mb-4 grid h-10 w-10 place-items-center rounded-lg bg-muted text-primary">{i === 0 ? <Grid3X3/> : i === 1 ? <Palette/> : <Layers3/>}</div><h3 className="font-black">{title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p></div>)}
+          {[['Album structure', 'Grouped like the reference gallery: color section, count, theme code, preview.'], ['Developer handoff', 'Every detail view includes HTML color codes and module mapping.'], ['Real product match', 'TigerExchange-like desktop and mobile flows, not generic landing pages.']].map(([title, body], i) => <div key={title} className="rounded-xl border border-border bg-card/75 p-6"><div className="mb-4 grid h-10 w-10 place-items-center rounded-lg bg-muted text-primary">{i === 0 ? <Grid3X3/> : i === 1 ? <Palette/> : <Layers3/>}</div><h3 className="font-black">{title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p></div>)}
         </div>
       </section>
     </main>
