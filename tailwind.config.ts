@@ -47,6 +47,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        tiger: "hsl(var(--tiger))",
+        casino: "hsl(var(--casino))",
+        panel: {
+          DEFAULT: "hsl(var(--panel))",
+          strong: "hsl(var(--panel-strong))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -84,6 +90,16 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "slow-pulse": "pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      backgroundImage: {
+        "hero-field": "var(--gradient-hero)",
+        "card-sheen": "var(--gradient-card)",
+        "gold-strike": "var(--gradient-gold)",
+      },
+      boxShadow: {
+        premium: "var(--shadow-premium)",
+        glow: "var(--shadow-glow)",
       },
     },
   },
