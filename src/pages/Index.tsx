@@ -68,10 +68,10 @@ function LogoMark({ theme, compact = false }: { theme: Theme; compact?: boolean 
 function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
-      <div className="absolute left-[3.2%] top-[8.5%] grid h-[5%] w-[8.2%] place-items-center px-1 text-center">
+      <div className="absolute left-0 top-0 grid h-[23.5%] w-[14.7%] place-items-center px-1 text-center" style={{ background: theme.primary }}>
         <LogoMark theme={theme} compact={compact} />
       </div>
-      <div className="absolute left-[45%] top-[5.2%] grid h-[4.6%] w-[11%] place-items-center text-center">
+      <div className="absolute left-[39%] top-[2.2%] grid h-[8%] w-[24%] place-items-center text-center" style={{ background: theme.primary }}>
         <LogoMark theme={theme} compact={compact} />
       </div>
     </div>
@@ -80,7 +80,7 @@ function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean
 
 function LoginBrandMask({ theme }: { theme: Theme }) {
   return (
-    <div className="pointer-events-none absolute inset-x-[34%] top-[8%] z-20 grid h-[5%] place-items-center text-center">
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-20 grid h-[18%] place-items-center text-center" style={{ background: theme.primary }}>
       <LogoMark theme={theme} />
     </div>
   );
