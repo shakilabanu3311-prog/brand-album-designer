@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Eye, Monitor, Palette, Smartphone, X } from "lucide-react";
-import cricketLoginHero from "@/assets/cricket-login-hero.jpg";
 import tigerHomeReference from "@/assets/tiger-home-reference.png";
 import tigerLoginReference from "@/assets/tiger-login-reference.png";
 
@@ -114,10 +113,6 @@ function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: b
     <div className="mx-auto w-full max-w-[286px] overflow-hidden rounded-[1.5rem] border-[7px] border-panel-strong bg-card shadow-premium">
       <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
         <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
-        <div className="absolute inset-x-[8%] top-[20%] h-[14%] overflow-hidden rounded-md opacity-35">
-          <img src={cricketLoginHero} alt="Cricket login visual" width={1024} height={768} className="h-full w-full object-cover object-[38%_top]" loading="lazy" />
-          <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${theme.secondary}, ${theme.primary})`, mixBlendMode: "color" }} />
-        </div>
         <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft solid /></div>
         <LoginBrandMask theme={theme} />
         <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
