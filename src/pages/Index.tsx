@@ -68,11 +68,10 @@ function LogoMark({ theme, compact = false }: { theme: Theme; compact?: boolean 
 function BrandMask({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-10">
-      <div className="absolute left-0 top-0 h-[23.5%] w-[14.7%]" style={{ background: theme.primary }} />
-      <div className="absolute left-[14.7%] top-0 h-[10%] w-[85.3%]" style={{ background: theme.primary }} />
-      <div className="absolute left-[3.8%] top-[9.5%] grid h-[2.8%] w-[6.2%] place-items-center text-center">
-        <LogoMark theme={theme} compact={compact} />
+      <div className="absolute left-0 top-0 grid h-[23.5%] w-[14.7%] place-items-center text-center" style={{ background: theme.primary }}>
+        <LogoMark theme={theme} />
       </div>
+      <div className="absolute left-[14.7%] top-0 h-[10%] w-[85.3%]" style={{ background: theme.primary }} />
     </div>
   );
 }
