@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Download, Eye, Grid3X3, Layers3, MonitorSmartphone, Palette, Search, ShieldCheck, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, Download, Eye, Grid3X3, Layers3, Palette, Search, ShieldCheck, Sparkles, X } from "lucide-react";
 
 type Theme = readonly [code: string, name: string, palette: readonly string[], mood: string, group: string];
 
@@ -67,7 +67,7 @@ function MiniLogin({ palette, code }: { palette: readonly string[]; code: string
       <div className="absolute inset-0" style={{ background: `radial-gradient(circle at 16% 12%, ${palette[0]}, transparent 36%), linear-gradient(135deg, ${palette[1]}, ${palette[2]})` }} />
       <div className="absolute left-[18%] top-[20%] h-[58%] w-[64%] rounded-md border border-foreground/20 bg-background/25 backdrop-blur-sm">
         <div className="grid h-full grid-cols-2">
-          <div className="flex items-center justify-center text-sm font-black tracking-widest" style={{ color: palette[3] }}>Logo</div>
+          <div className="flex items-center justify-center text-xs font-black tracking-widest" style={{ color: palette[3] }}>TIGEREXCH</div>
           <div className="p-3 text-[8px]" style={{ background: palette[0], color: contrast(palette[0]) }}>
             <b>{code} Sign In</b>
             <div className="mt-2 h-3 rounded-sm bg-foreground/80" />
@@ -80,30 +80,29 @@ function MiniLogin({ palette, code }: { palette: readonly string[]; code: string
   );
 }
 
-function TigerDesktopMock({ theme }: { theme: Theme }) {
+function TigerHomeImage({ theme }: { theme: Theme }) {
   const [code, , palette] = theme;
   return (
-    <div className="overflow-hidden rounded-lg border border-border bg-panel-strong shadow-premium">
-      <div className="flex items-center justify-between px-5 py-3" style={{ background: palette[1], color: contrast(palette[1]) }}>
-        <div className="flex items-center gap-2 font-black tracking-[0.18em]"><span className="text-lg">🐯</span>TIGEREXCH</div>
-        <div className="flex items-center gap-2 text-xs"><span>Home</span><span className="rounded-md px-3 py-1 font-bold" style={{ background: palette[0], color: contrast(palette[0]) }}>Login</span><span className="rounded-md px-3 py-1 font-bold" style={{ background: palette[0], color: contrast(palette[0]) }}>Join Now</span></div>
+    <div className="overflow-hidden rounded-md border border-border bg-card shadow-premium">
+      <div className="grid aspect-[16/9] grid-cols-[15%_85%] text-[8px] sm:text-[10px]" style={{ background: palette[2], color: contrast(palette[2]) }}>
+        <aside className="space-y-1 p-2" style={{ background: palette[2] }}>
+          <div className="mb-3 text-center text-base font-black leading-none" style={{ color: palette[0] }}>TIGER<br/><span style={{ color: palette[3] }}>EXCH</span></div>
+          {['HOME', 'DEPOSIT', 'WITHDRAWAL', 'WHATSAPP', 'AURA', 'CASINO', 'ICASINO', 'A/C STATEMENT', 'RULES', 'PROFILE'].map((item) => <div key={item} className="rounded-sm px-2 py-1.5 font-bold tracking-widest" style={{ background: `${palette[3]}55`, color: contrast(palette[3]) }}>{item}</div>)}
+        </aside>
+        <section className="overflow-hidden">
+          <div className="flex h-5 items-center justify-between px-2 text-xs font-black" style={{ background: palette[3], color: contrast(palette[3]) }}><span>Balance : PTI</span><span>Exp : 0</span></div>
+          <div className="grid h-12 place-items-center text-xl font-black tracking-widest" style={{ background: palette[2] }}><span><span style={{ color: palette[0] }}>TIGER</span><span style={{ color: palette[3] }}>EXCH</span></span></div>
+          <div className="py-1 text-center text-xs font-black tracking-widest" style={{ background: palette[3], color: contrast(palette[3]) }}>WELCOME TO OUR EXCHANGE , WE HAVE LAUNCHED 4500+ GAMES IN NEW I-CASINO</div>
+          <div className="grid grid-cols-2 gap-4 p-2"><div className="rounded-sm py-2 text-center text-sm font-black" style={{ background: `linear-gradient(90deg, ${palette[3]}, ${palette[0]})`, color: contrast(palette[0]) }}>🏦 DEPOSIT</div><div className="rounded-sm py-2 text-center text-sm font-black" style={{ background: `linear-gradient(90deg, ${palette[0]}, ${palette[3]})`, color: contrast(palette[0]) }}>💵 WITHDRAW</div></div>
+          <div className="grid grid-cols-7 gap-2 px-2 pb-2">{['IN-PLAY', 'CRICKET', 'SPORTSBOOK', 'AURA', 'LIVE CASINO', 'FOOTBALL', 'TENNIS'].map((item, i) => <div key={item} className="rounded-sm py-2 text-center font-black" style={{ background: i === 0 ? palette[0] : palette[3], color: contrast(i === 0 ? palette[0] : palette[3]) }}>{item}</div>)}</div>
+          <div className="flex gap-3 overflow-hidden px-2 py-2" style={{ background: `${palette[1]}22` }}>{providers.concat(['POKER', 'UP DOWN', 'Teen Patti']).map((p, i) => <div key={`${p}-${i}`} className="grid h-10 min-w-16 place-items-center rounded-md px-2 text-center font-black" style={{ background: `radial-gradient(circle, ${palette[0]}, ${palette[1]})`, color: contrast(palette[0]) }}>{p}</div>)}</div>
+          <div className="px-2 py-1 text-xs font-black tracking-widest" style={{ background: palette[3], color: contrast(palette[3]) }}>CRICKET</div>
+          <div className="bg-background text-foreground">
+            {['Pakistan Super League', 'Indian Premier League', 'Lucknow Super Giants Vs Rajasthan Royals', 'Hyderabad Kingsmen Vs Multan Sultans', 'South Africa W Vs India W'].map((match, i) => <div key={match} className="grid grid-cols-[43%_9%_48%] items-center border-b border-border px-2 py-2"><div><b>{i ? '22/Apr/2026 07:30 PM' : '24/Mar/2026 12:00 PM'}</b><br/>{match}</div><div className="h-2 w-2 rounded-full" style={{ background: palette[0] }} /><div className="grid grid-cols-6 gap-1">{['1.63','2.8','10','-','4.2','4.9'].map((odd, j) => <span key={`${odd}-${j}`} className="rounded-sm py-1 text-center font-black" style={{ background: j % 2 ? palette[0] : palette[3], color: contrast(j % 2 ? palette[0] : palette[3]) }}>{odd}<small className="block">{j ? '11.53' : '7.21'}</small></span>)}</div></div>)}
+          </div>
+        </section>
       </div>
-      <div className="p-5" style={{ background: `linear-gradient(135deg, ${palette[1]}, ${palette[2]}55)` }}>
-        <div className="rounded-lg p-6" style={{ background: `linear-gradient(90deg, ${palette[3]}22, ${palette[0]}88)` }}>
-          <p className="text-2xl font-black uppercase leading-tight" style={{ color: contrast(palette[0]) }}>Welcome bonus on 1st deposit 5%</p>
-          <p className="mt-1 text-sm font-bold" style={{ color: contrast(palette[0]) }}>Refer bonus upto 10% · Weekly loss back 3%</p>
-        </div>
-        <div className="mt-4 flex justify-center gap-2"><span className="h-1 w-10 rounded-full bg-foreground" /><span className="h-1 w-10 rounded-full bg-muted" /><span className="h-1 w-10 rounded-full bg-muted" /></div>
-        <div className="mt-5 flex items-center justify-between"><h4 className="rounded-md px-4 py-2 text-sm font-black" style={{ background: palette[3], color: contrast(palette[3]) }}>Sports</h4><div className="flex gap-2"><ChevronLeft size={16}/><ChevronRight size={16}/></div></div>
-        <div className="mt-3 grid grid-cols-4 gap-3">
-          {sportTiles.slice(0, 4).map((s, i) => <div key={s} className="h-24 rounded-lg p-4 text-sm font-black shadow-premium" style={{ background: `linear-gradient(135deg, ${i % 2 ? palette[2] : palette[0]}, ${palette[1]})`, color: contrast(i % 2 ? palette[2] : palette[0]) }}>{s}</div>)}
-        </div>
-        <h4 className="mt-5 inline-block rounded-md px-4 py-2 text-sm font-black" style={{ background: palette[3], color: contrast(palette[3]) }}>Our Providers</h4>
-        <div className="mt-3 grid grid-cols-4 gap-3">
-          {providers.slice(0, 4).map((p, i) => <div key={p} className="h-20 rounded-lg p-4 text-lg font-black" style={{ background: i % 2 ? palette[1] : palette[0], color: contrast(i % 2 ? palette[1] : palette[0]) }}>{p}</div>)}
-        </div>
-        <p className="mt-4 text-xs text-muted-foreground">Desktop handoff · {code} · header, bonus slider, sports carousel, providers, favourites, in-play market modules.</p>
-      </div>
+      <p className="px-3 py-2 text-xs text-muted-foreground">Home design image · {code}</p>
     </div>
   );
 }
@@ -111,21 +110,17 @@ function TigerDesktopMock({ theme }: { theme: Theme }) {
 function TigerMobileMock({ theme }: { theme: Theme }) {
   const [code, , palette] = theme;
   return (
-    <div className="mx-auto max-w-[330px] overflow-hidden rounded-xl border border-border bg-card shadow-premium">
-      <div className="flex items-center justify-between px-3 py-2 text-xs font-black" style={{ background: palette[0], color: contrast(palette[0]) }}><span>⚙ Bets</span><span>Main USD 10,000.00</span><span>+4</span></div>
-      <div className="flex items-center gap-2 px-3 py-2 text-xs" style={{ background: palette[1], color: contrast(palette[1]) }}><span>🎙 News</span><span>17 Apr 2019</span><span>-Notice: Wallet</span></div>
-      <div className="h-20 p-3" style={{ background: `linear-gradient(90deg, ${palette[0]}, ${palette[2]})`, color: contrast(palette[0]) }}><p className="text-xl font-black">Teen Patti 20-20</p><p className="text-xs">live bonus banner</p></div>
-      <div className="grid grid-cols-5 text-center text-[10px] font-bold" style={{ background: palette[1], color: contrast(palette[1]) }}>{["Casino", "Cricket", "Soccer", "Menu", "Search"].map((n) => <span key={n} className="border-r border-border p-2 last:border-r-0">{n}</span>)}</div>
-      <div className="p-3" style={{ background: palette[3], color: contrast(palette[3]) }}>
-        <h5 className="mb-2 text-center text-sm font-black">Highlights</h5>
-        {markets.map((m, i) => <div key={m} className="mb-2 rounded-md border border-border bg-background/85 p-2 text-xs text-foreground"><span className="font-bold" style={{ color: palette[0] }}>●</span> {m}<span className="float-right rounded px-1" style={{ background: palette[0], color: contrast(palette[0]) }}>{i % 2 ? "F" : "P"}</span></div>)}
+    <div className="mx-auto max-w-[360px] overflow-hidden rounded-md border border-border bg-card shadow-premium">
+      <div className="relative aspect-[4/3] p-5" style={{ background: palette[2], color: contrast(palette[2]) }}>
+        <button className="absolute right-0 top-0 grid h-12 w-12 place-items-center rounded-bl-lg" style={{ background: palette[0], color: contrast(palette[0]) }}><X size={20}/></button>
+        <div className="mb-8 mt-3 text-center text-5xl font-black tracking-widest"><span style={{ color: palette[0] }}>TIGER</span><span style={{ color: palette[3] }}>EXCH</span></div>
+        <h4 className="mb-5 text-center text-4xl font-black">Login</h4>
+        {['Username', 'Password'].map((field) => <label key={field} className="mb-4 block text-2xl"><span>{field}</span><input className="mt-2 h-10 w-full rounded-md border border-border bg-background px-4 text-sm text-foreground outline-none" placeholder={field} /></label>)}
+        <label className="flex items-center gap-3 text-xl"><span className="h-6 w-6 rounded border border-border bg-background" />Remember me</label>
+        <div className="mt-8 grid grid-cols-2 gap-3"><button className="rounded-lg py-4 text-lg font-black" style={{ background: palette[0], color: contrast(palette[0]) }}>Login</button><button className="rounded-lg py-4 text-lg font-black" style={{ background: palette[0], color: contrast(palette[0]) }}>Demo Login</button></div>
+        <p className="mt-5 text-xl">Forgot password?</p>
       </div>
-      <div className="relative p-5" style={{ background: `linear-gradient(135deg, ${palette[2]}, ${palette[1]})` }}>
-        <button className="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full bg-background/80 text-foreground"><X size={14}/></button>
-        <div className="mb-5 grid h-28 place-items-center rounded-lg border border-foreground/20 bg-background/20 text-3xl font-black backdrop-blur-sm" style={{ color: palette[3] }}>Logo</div>
-        {['Username', 'Password', 'Validation Code'].map((f, i) => <div key={f} className="mb-2 rounded-md bg-foreground px-3 py-2 text-xs text-background">{f}<span className="float-right font-black">{i === 2 ? '6279' : ''}</span></div>)}
-        <div className="rounded-md py-2 text-center text-sm font-black" style={{ background: palette[0], color: contrast(palette[0]) }}>Login · {code}</div>
-      </div>
+      <p className="px-3 py-2 text-xs text-muted-foreground">Login image without tiger logo · {code}</p>
     </div>
   );
 }
@@ -136,7 +131,7 @@ function ThemeDetail({ theme }: { theme: Theme }) {
     <section id="theme-detail" className="rounded-xl border border-border bg-card/75 p-4 shadow-premium backdrop-blur sm:p-6">
       <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <div className="mb-3 inline-flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-xs text-muted-foreground"><MonitorSmartphone size={14}/> Open theme preview for customers + developers</div>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-xs text-muted-foreground"><Eye size={14}/> Open theme preview for customers + developers</div>
           <h2 className="text-3xl font-black sm:text-5xl">{code} · {name}</h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">TigerExchange demo structure in {group.toLowerCase()} theme: desktop home, mobile market list, mobile login overlay, sports carousel, providers, favourites and color handoff.</p>
         </div>
@@ -148,8 +143,8 @@ function ThemeDetail({ theme }: { theme: Theme }) {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <div><h3 className="mb-3 text-2xl font-black">Desktop</h3><TigerDesktopMock theme={theme} /></div>
-        <div><h3 className="mb-3 text-2xl font-black">Mobile + Login</h3><TigerMobileMock theme={theme} /></div>
+        <div><h3 className="mb-3 text-2xl font-black">Home image</h3><TigerHomeImage theme={theme} /></div>
+        <div><h3 className="mb-3 text-2xl font-black">Login image</h3><TigerMobileMock theme={theme} /></div>
       </div>
 
       <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -190,7 +185,7 @@ const Index = () => {
             <div className="relative rounded-xl border border-border bg-card-sheen p-4 shadow-premium">
               <div className="absolute -inset-1 -z-10 rounded-xl bg-gold-strike opacity-20 blur-2xl" />
               <div className="mb-3 flex items-center justify-between"><span className="text-sm font-bold">Live selected theme</span><Eye size={18} className="text-primary" /></div>
-              <TigerDesktopMock theme={selected} />
+               <TigerHomeImage theme={selected} />
             </div>
           </div>
         </div>
