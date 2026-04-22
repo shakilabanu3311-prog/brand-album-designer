@@ -100,13 +100,37 @@ function TigerHomeImage({ theme }: { theme: Theme }) {
 function TigerMobileMock({ theme }: { theme: Theme }) {
   const [code, , palette] = theme;
   return (
-    <div className="mx-auto max-w-[360px] overflow-hidden rounded-md border border-border bg-card shadow-premium">
-      <div className="relative aspect-[9/16] overflow-hidden bg-panel-strong">
-        <img src={tigerLoginReference} alt={`${code} TigerExchange login design without logo`} className="h-full w-full object-cover object-top" loading="lazy" />
-        <div className="absolute inset-0 opacity-70 [mix-blend-mode:color]" style={{ background: palette[0] }} />
-        <div className="absolute inset-x-[8%] bottom-[15%] h-[12%] rounded-lg opacity-80 [mix-blend-mode:color]" style={{ background: palette[0] }} />
+    <div className="mx-auto w-full max-w-[390px] overflow-hidden rounded-md border border-border bg-card shadow-premium">
+      <div className="relative aspect-[9/19.5] overflow-hidden bg-panel-strong">
+        <img src={tigerLoginReference} alt={`${code} TigerExchange login design without logo`} className="h-full w-full object-contain object-top" loading="lazy" />
+        <div className="absolute inset-x-0 top-0 h-[64%] opacity-70 [mix-blend-mode:color]" style={{ background: palette[0] }} />
+        <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg opacity-80 [mix-blend-mode:color]" style={{ background: palette[0] }} />
       </div>
       <p className="px-3 py-2 text-xs text-muted-foreground">Login image without tiger logo · {code}</p>
+    </div>
+  );
+}
+
+function ThemePreviewModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
+  const [code, name, palette] = theme;
+  return (
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-background/92 p-3 backdrop-blur-md sm:p-6">
+      <div className="mx-auto max-w-7xl rounded-xl border border-border bg-card p-4 shadow-premium sm:p-6">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-bold text-primary">Theme preview</p>
+            <h2 className="text-2xl font-black sm:text-4xl">{code} · {name}</h2>
+          </div>
+          <button onClick={onClose} className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-muted text-foreground transition hover:border-primary hover:text-primary" aria-label="Close preview"><X size={20} /></button>
+        </div>
+        <div className="mb-5 grid gap-2 sm:grid-cols-4">
+          {palette.map((color) => <div key={color} className="rounded-md border border-border bg-panel p-2"><div className="h-8 rounded" style={{ background: color }} /><p className="mt-1 font-mono text-xs font-black">{color}</p></div>)}
+        </div>
+        <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
+          <div><h3 className="mb-3 text-lg font-black">Desktop home image</h3><TigerHomeImage theme={theme} /></div>
+          <div><h3 className="mb-3 text-lg font-black">Mobile login image</h3><TigerMobileMock theme={theme} /></div>
+        </div>
+      </div>
     </div>
   );
 }
