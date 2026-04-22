@@ -11,48 +11,48 @@ type Theme = {
 };
 
 const themes: Theme[] = [
-  { code: "T01", name: "Golden Black", primary: "#F4B51F", secondary: "#111111" },
-  { code: "T02", name: "Emerald Black", primary: "#1FA463", secondary: "#0B1510" },
-  { code: "T03", name: "Royal Blue", primary: "#2268E8", secondary: "#071021" },
-  { code: "T04", name: "Crimson Dark", primary: "#D92E3A", secondary: "#12080A" },
-  { code: "T05", name: "Orange Club", primary: "#F47B20", secondary: "#16100B" },
-  { code: "T06", name: "Purple Night", primary: "#7B45E8", secondary: "#120A1C" },
-  { code: "T07", name: "Teal Market", primary: "#0E9AA6", secondary: "#061517" },
-  { code: "T08", name: "Ruby Gold", primary: "#C91F37", secondary: "#D9A326" },
-  { code: "T09", name: "Sky Navy", primary: "#2D9CDB", secondary: "#071C33" },
-  { code: "T10", name: "Lime Black", primary: "#A6D836", secondary: "#101307" },
-  { code: "T11", name: "Copper Black", primary: "#C9702E", secondary: "#15100C" },
-  { code: "T12", name: "Pink Casino", primary: "#D934A4", secondary: "#180A16" },
-  { code: "T13", name: "Aqua Black", primary: "#16B8C8", secondary: "#071315" },
-  { code: "T14", name: "Signal Red", primary: "#F23545", secondary: "#101014" },
-  { code: "T15", name: "White Gold", primary: "#F8F5EA", secondary: "#CFA43A" },
-  { code: "T16", name: "Forest Gold", primary: "#0F6B3E", secondary: "#F0B429" },
-  { code: "T17", name: "Midnight Yellow", primary: "#FFCA28", secondary: "#05070B" },
-  { code: "T18", name: "Blue Amber", primary: "#1B4FD8", secondary: "#F5A623" },
-  { code: "T19", name: "Maroon Cream", primary: "#8F1D2C", secondary: "#F4E5BC" },
-  { code: "T20", name: "Mint Charcoal", primary: "#52D69C", secondary: "#151A18" },
-  { code: "T21", name: "Violet Gold", primary: "#6836B7", secondary: "#E9B23C" },
-  { code: "T22", name: "Fire Black", primary: "#FF4F1F", secondary: "#080808" },
-  { code: "T23", name: "Ice Blue", primary: "#B9F1FF", secondary: "#0B1824" },
-  { code: "T24", name: "Olive Gold", primary: "#6B7A24", secondary: "#D6B44D" },
-  { code: "T25", name: "Platinum Red", primary: "#E8EAEE", secondary: "#B6162B" },
-  { code: "T26", name: "Neon Mint", primary: "#35D48A", secondary: "#070A08" },
-  { code: "T27", name: "Bookmaker Navy", primary: "#2447A8", secondary: "#050A18" },
-  { code: "T28", name: "Amber Brown", primary: "#F59A23", secondary: "#2A1808" },
-  { code: "T29", name: "Rose Black", primary: "#C43362", secondary: "#11141B" },
-  { code: "T30", name: "Crown Green", primary: "#168A4A", secondary: "#F4B63B" },
-  { code: "T31", name: "Deep Violet", primary: "#5F4BFF", secondary: "#080713" },
-  { code: "T32", name: "Lemon Graphite", primary: "#F5D13D", secondary: "#171717" },
-  { code: "T33", name: "Turquoise Gold", primary: "#47C6B2", secondary: "#E3AA25" },
-  { code: "T34", name: "Scarlet Steel", primary: "#E64040", secondary: "#2A303A" },
-  { code: "T35", name: "Pearl Black", primary: "#F7F5EF", secondary: "#151515" },
-  { code: "T36", name: "Casino Green", primary: "#2F9C65", secondary: "#070A08" },
+  { code: "T01", name: "Tiger Gold", primary: "#F5B51B", secondary: "#101010" },
+  { code: "T02", name: "Exchange Green", primary: "#18A058", secondary: "#07120C" },
+  { code: "T03", name: "Bookmaker Blue", primary: "#1E63E9", secondary: "#061126" },
+  { code: "T04", name: "Cricket Emerald", primary: "#00A86B", secondary: "#081A12" },
+  { code: "T05", name: "Royal Red", primary: "#D72638", secondary: "#120608" },
+  { code: "T06", name: "Orange Pro", primary: "#F47A1F", secondary: "#130B05" },
+  { code: "T07", name: "Aqua Exchange", primary: "#08AFC7", secondary: "#061417" },
+  { code: "T08", name: "Violet Club", primary: "#7542E8", secondary: "#10081D" },
+  { code: "T09", name: "Amber Black", primary: "#FFCA2A", secondary: "#080808" },
+  { code: "T10", name: "Signal Red", primary: "#F03745", secondary: "#101014" },
+  { code: "T11", name: "Deep Navy", primary: "#2E7BF6", secondary: "#050B18" },
+  { code: "T12", name: "Casino Mint", primary: "#38D98B", secondary: "#06110C" },
+  { code: "T13", name: "Copper Night", primary: "#D8772C", secondary: "#120C08" },
+  { code: "T14", name: "Magenta Bet", primary: "#CF2F91", secondary: "#150814" },
+  { code: "T15", name: "Teal Sport", primary: "#0C949E", secondary: "#061315" },
+  { code: "T16", name: "Ruby Gold", primary: "#C51F34", secondary: "#DCA72B" },
+  { code: "T17", name: "Forest Gold", primary: "#13733E", secondary: "#D8A82F" },
+  { code: "T18", name: "Blue Amber", primary: "#1B56D8", secondary: "#F0A11F" },
+  { code: "T19", name: "Lime Black", primary: "#9AD529", secondary: "#090C06" },
+  { code: "T20", name: "Fireline", primary: "#FF4D1F", secondary: "#0B0B0B" },
+  { code: "T21", name: "Purple Gold", primary: "#6534C9", secondary: "#E2B33A" },
+  { code: "T22", name: "Sky Black", primary: "#2FA8FF", secondary: "#06101A" },
+  { code: "T23", name: "Rose Night", primary: "#C43362", secondary: "#100A10" },
+  { code: "T24", name: "Jade Pro", primary: "#24B878", secondary: "#07130D" },
+  { code: "T25", name: "Steel Blue", primary: "#4267D9", secondary: "#111827" },
+  { code: "T26", name: "Saffron Dark", primary: "#E89622", secondary: "#11100B" },
+  { code: "T27", name: "Crimson Gold", primary: "#B9162B", secondary: "#F0B429" },
+  { code: "T28", name: "Ocean Teal", primary: "#13B8A6", secondary: "#071516" },
+  { code: "T29", name: "Indigo Odds", primary: "#4B5CF0", secondary: "#090B1A" },
+  { code: "T30", name: "Neon Green", primary: "#32D875", secondary: "#050A06" },
+  { code: "T31", name: "Cherry Black", primary: "#E7334B", secondary: "#0A0708" },
+  { code: "T32", name: "Gold Navy", primary: "#F2B632", secondary: "#071426" },
+  { code: "T33", name: "Cyan Navy", primary: "#1FC8E3", secondary: "#061426" },
+  { code: "T34", name: "Vivid Orange", primary: "#FF6B00", secondary: "#080808" },
+  { code: "T35", name: "Emerald Gold", primary: "#14965A", secondary: "#E4B137" },
+  { code: "T36", name: "Classic Yellow", primary: "#E7B422", secondary: "#151515" },
 ];
 
 function ThemeWash({ primary, secondary, soft = false }: { primary: string; secondary: string; soft?: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-55" : "opacity-80"} [mix-blend-mode:color]`}
+      className={`pointer-events-none absolute inset-0 ${soft ? "opacity-45" : "opacity-72"} [mix-blend-mode:color]`}
       style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}
     />
   );
@@ -61,8 +61,14 @@ function ThemeWash({ primary, secondary, soft = false }: { primary: string; seco
 function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
     <div className="overflow-hidden rounded-md border border-border bg-card shadow-premium">
-      <div className="relative aspect-[16/9] overflow-hidden bg-panel-strong">
-        <img src={tigerHomeReference} alt={`${theme.name} desktop TigerExchange preview`} className="h-full w-full object-cover object-top" loading="lazy" />
+      <div className="flex items-center gap-1 border-b border-border bg-muted px-3 py-2">
+        <span className="h-2.5 w-2.5 rounded-full bg-primary" />
+        <span className="h-2.5 w-2.5 rounded-full bg-accent" />
+        <span className="h-2.5 w-2.5 rounded-full bg-secondary" />
+        <span className="ml-3 truncate text-[10px] font-bold text-muted-foreground">tigerexchange247.co/home</span>
+      </div>
+      <div className="relative aspect-[16/8.7] overflow-hidden bg-panel-strong">
+        <img src={tigerHomeReference} alt={`${theme.name} desktop TigerExchange preview`} className="h-[112%] w-full object-cover object-top" loading="lazy" />
         <div className="absolute left-0 top-0 h-full w-[14.7%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
         <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
         <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
@@ -75,9 +81,9 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
 
 function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: boolean }) {
   return (
-    <div className="mx-auto w-full max-w-[390px] overflow-hidden rounded-md border border-border bg-card shadow-premium">
-      <div className="relative aspect-[9/19.5] overflow-hidden bg-panel-strong">
-        <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
+    <div className="mx-auto w-full max-w-[330px] overflow-hidden rounded-[1.8rem] border-[10px] border-panel-strong bg-card shadow-premium">
+      <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1.1rem] bg-panel-strong">
+        <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-cover object-top" loading="lazy" />
         <div className="absolute inset-x-0 top-0 h-[64%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft /></div>
         <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
       </div>
@@ -111,7 +117,7 @@ function ThemePreviewModal({ theme, onClose }: { theme: Theme; onClose: () => vo
           </div>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
+        <div className="grid gap-5 xl:grid-cols-[1.42fr_0.58fr]">
           <div><h3 className="mb-3 flex items-center gap-2 text-lg font-black"><Monitor size={18} /> Desktop view</h3><DesktopView theme={theme} /></div>
           <div><h3 className="mb-3 flex items-center gap-2 text-lg font-black"><Smartphone size={18} /> Mobile login</h3><MobileLoginView theme={theme} /></div>
         </div>
@@ -146,7 +152,7 @@ const Index = () => {
           <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-border bg-card/70 px-3 py-2 text-xs text-muted-foreground backdrop-blur"><Eye size={14}/> Click a color theme to open full preview</div>
-              <h1 className="max-w-4xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">TigerExchange preview in one selected color.</h1>
+              <h1 className="max-w-4xl text-3xl font-black leading-tight sm:text-6xl lg:text-7xl">TigerExchange preview in one selected color.</h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">Only the header, sidebar, key bars and login color areas change. The site image stays same, so customers can compare exact color themes and send one code to developers.</p>
               <div className="mt-7 grid max-w-lg grid-cols-2 gap-3">
                 <div className="rounded-md border border-border bg-card/75 p-4 backdrop-blur"><p className="text-2xl font-black text-primary">{themes.length}</p><p className="text-xs uppercase tracking-widest text-muted-foreground">Theme previews</p></div>
@@ -172,7 +178,7 @@ const Index = () => {
               const isActive = selected.code === theme.code;
               return (
                 <button key={theme.code} onClick={() => chooseTheme(theme.code)} className={`group overflow-hidden rounded-lg border bg-card-sheen text-left shadow-premium transition duration-300 hover:-translate-y-1 hover:border-primary/70 ${isActive ? "border-primary" : "border-border"}`}>
-                  <div className="p-3"><DesktopView theme={theme} compact /></div>
+                  <div className="grid grid-cols-[1fr_76px] gap-2 p-3"><DesktopView theme={theme} compact /><MobileLoginView theme={theme} compact /></div>
                   <div className="border-t border-border p-4">
                     <div className="mb-3 flex items-start justify-between gap-3"><div><h3 className="text-lg font-black">{theme.code} · {theme.name}</h3><p className="text-sm text-muted-foreground">TigerExchange site preview</p></div><ArrowUpRight className="text-primary transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18}/></div>
                     <div className="grid grid-cols-2 gap-2">
