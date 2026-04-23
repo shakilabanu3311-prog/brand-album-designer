@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Eye, Monitor, Palette, Smartphone, X } from "lucide-react";
-import tigerHomeReference from "@/assets/tiger-home-clean.png";
-import tigerLoginReference from "@/assets/tiger-login-clean.png";
+import exchangeProductDesktop from "@/assets/exchange-product-desktop.png";
+import exchangeProductLogin from "@/assets/exchange-product-login.png";
 
 type Theme = {
   code: string;
@@ -99,7 +99,7 @@ function DesktopView({ theme, compact = false }: { theme: Theme; compact?: boole
         <span className="ml-3 truncate text-[9px] font-bold text-muted-foreground">exchange-demo.com</span>
       </div>
       <div className="relative aspect-[16/8.7] overflow-hidden bg-panel-strong">
-        <img src={tigerHomeReference} alt={`${theme.name} desktop exchange preview`} className="h-[112%] w-full object-cover object-top" loading="lazy" />
+        <img src={exchangeProductDesktop} alt={`${theme.name} desktop exchange preview`} className="h-full w-full object-cover object-top" loading="lazy" />
         <div className="absolute left-0 top-0 h-full w-[14.7%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
         <div className="absolute left-[14.7%] top-0 h-[22.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} solid /></div>
         <div className="absolute left-[14.7%] top-[22.2%] h-[15.2%] w-[85.3%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft solid /></div>
@@ -115,7 +115,7 @@ function MobileLoginView({ theme, compact = false }: { theme: Theme; compact?: b
   return (
     <div className="mx-auto w-full max-w-[286px] overflow-hidden rounded-[1.5rem] border-[7px] border-panel-strong bg-card shadow-premium">
       <div className="relative aspect-[9/18.8] overflow-hidden rounded-[1rem] bg-panel-strong">
-        <img src={tigerLoginReference} alt={`${theme.name} mobile login preview`} className="h-full w-full object-contain object-top" loading="lazy" />
+        <img src={exchangeProductLogin} alt={`${theme.name} mobile login preview`} className="h-full w-full object-cover object-top" loading="lazy" />
         <div className="absolute inset-x-0 top-0 h-[62%]"><ThemeWash primary={theme.primary} secondary={theme.secondary} soft solid /></div>
         <LoginBrandMask theme={theme} />
         <div className="absolute inset-x-[7%] bottom-[14%] h-[13%] rounded-lg"><ThemeWash primary={theme.primary} secondary={theme.secondary} /></div>
